@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fdceba9d624e46dab2a25c4609068cab" Name="Diagram1" ZoomLevel="85" >
+        <EntityTypeShape EntityType="SGI_bd.Inventario_Carrera" Width="1.75" PointX="0.75" PointY="0.5" />
+        <EntityTypeShape EntityType="SGI_bd.EquipoUnico" Width="2.75" PointX="0.75" PointY="2.875" />
+        <EntityTypeShape EntityType="SGI_bd.Tipo_Articulo" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="SGI_bd.Prestamo" Width="2" PointX="4.625" PointY="0.5" />
+        <EntityTypeShape EntityType="SGI_bd.Nav_EstadoPrestamo" Width="1.875" PointX="7.375" PointY="0.5" />
+        <EntityTypeShape EntityType="SGI_bd.Estados" Width="1.75" PointX="10.375" PointY="0.5" />
+        <EntityTypeShape EntityType="SGI_bd.Carrera_Usuario" Width="1.5" PointX="7.625" PointY="4.5" />
+        <EntityTypeShape EntityType="SGI_bd.Usuario" Width="2" PointX="4.625" PointY="4.625" />
+        <AssociationConnector Association="SGI_bd.Inventario_CarreraEquipoUnico" />
+        <AssociationConnector Association="SGI_bd.Tipo_ArticuloEquipoUnico" />
+        <AssociationConnector Association="SGI_bd.EquipoUnicoPrestamo" />
+        <AssociationConnector Association="SGI_bd.PrestamoNav_EstadoPrestamo" />
+        <AssociationConnector Association="SGI_bd.UsuarioPrestamo" />
+        <AssociationConnector Association="SGI_bd.EstadosNav_EstadoPrestamo" />
+        <AssociationConnector Association="SGI_bd.Carrera_UsuarioUsuario" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

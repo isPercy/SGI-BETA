@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model_BD.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model_BDStoreContainer">
+    <EntitySet Name="EquipoUnico" EntityType="Model_BD.Store.EquipoUnico" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tipo_Articulo" EntityType="Model_BD.Store.Tipo_Articulo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Inventario_Lab" EntityType="Model_BD.Store.Inventario_Lab" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Prestamo" EntityType="Model_BD.Store.Prestamo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Usuario" EntityType="Model_BD.Store.Usuario" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Carrera_Usuario" EntityType="Model_BD.Store.Carrera_Usuario" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Registro_EstadosSet" EntityType="Model_BD.Store.Registro_EstadosSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Estados" EntityType="Model_BD.Store.Estados" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="Tipo_ArticuloEquipoUnico" Association="Model_BD.Store.Tipo_ArticuloEquipoUnico">
+      <End Role="Tipo_Articulo" EntitySet="Tipo_Articulo" />
+      <End Role="EquipoUnico" EntitySet="EquipoUnico" />
+    </AssociationSet>
+    <AssociationSet Name="Inventario_LabEquipoUnico" Association="Model_BD.Store.Inventario_LabEquipoUnico">
+      <End Role="Inventario_Lab" EntitySet="Inventario_Lab" />
+      <End Role="EquipoUnico" EntitySet="EquipoUnico" />
+    </AssociationSet>
+    <AssociationSet Name="EquipoUnicoPrestamo" Association="Model_BD.Store.EquipoUnicoPrestamo">
+      <End Role="EquipoUnico" EntitySet="EquipoUnico" />
+      <End Role="Prestamo" EntitySet="Prestamo" />
+    </AssociationSet>
+    <AssociationSet Name="Carrera_UsuarioUsuario" Association="Model_BD.Store.Carrera_UsuarioUsuario">
+      <End Role="Carrera_Usuario" EntitySet="Carrera_Usuario" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="UsuarioPrestamo" Association="Model_BD.Store.UsuarioPrestamo">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Prestamo" EntitySet="Prestamo" />
+    </AssociationSet>
+    <AssociationSet Name="PrestamoRegistro_Estados" Association="Model_BD.Store.PrestamoRegistro_Estados">
+      <End Role="Prestamo" EntitySet="Prestamo" />
+      <End Role="Registro_Estados" EntitySet="Registro_EstadosSet" />
+    </AssociationSet>
+    <AssociationSet Name="EstadosRegistro_Estados" Association="Model_BD.Store.EstadosRegistro_Estados">
+      <End Role="Estados" EntitySet="Estados" />
+      <End Role="Registro_Estados" EntitySet="Registro_EstadosSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="EquipoUnico">
+    <Key>
+      <PropertyRef Name="ID_Equipo" />
+    </Key>
+    <Property Name="ID_Equipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Num_Serie" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+    <Property Name="Tipo_ArticuloID_Articulo" Type="int" Nullable="false" />
+    <Property Name="Inventario_LabID_Lab" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tipo_Articulo">
+    <Key>
+      <PropertyRef Name="ID_Articulo" />
+    </Key>
+    <Property Name="ID_Articulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Articulo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inventario_Lab">
+    <Key>
+      <PropertyRef Name="ID_Lab" />
+    </Key>
+    <Property Name="ID_Lab" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Lab" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Prestamo">
+    <Key>
+      <PropertyRef Name="ID_Prestamo" />
+    </Key>
+    <Property Name="ID_Prestamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EquipoUnicoID_Equipo" Type="int" Nullable="false" />
+    <Property Name="UsuarioID_User" Type="int" Nullable="false" />
+    <Property Name="Date_Entrega" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date_Vencimiento" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="ID_User" />
+    </Key>
+    <Property Name="ID_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RUT" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Correo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Celular" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Carrera_UsuarioID_Carrera" Type="int" Nullable="false" />
+    <Property Name="Nom_Usuario" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Carrera_Usuario">
+    <Key>
+      <PropertyRef Name="ID_Carrera" />
+    </Key>
+    <Property Name="ID_Carrera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Carrera" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Registro_EstadosSet">
+    <Key>
+      <PropertyRef Name="ID_Reg_Est" />
+    </Key>
+    <Property Name="ID_Reg_Est" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrestamoID_Prestamo" Type="int" Nullable="false" />
+    <Property Name="EstadosID_Estado" Type="int" Nullable="false" />
+    <Property Name="Date_Registo" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Estados">
+    <Key>
+      <PropertyRef Name="ID_Estado" />
+    </Key>
+    <Property Name="ID_Estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Estado" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="Tipo_ArticuloEquipoUnico">
+    <End Role="Tipo_Articulo" Type="Model_BD.Store.Tipo_Articulo" Multiplicity="1" />
+    <End Role="EquipoUnico" Type="Model_BD.Store.EquipoUnico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Articulo">
+        <PropertyRef Name="ID_Articulo" />
+      </Principal>
+      <Dependent Role="EquipoUnico">
+        <PropertyRef Name="Tipo_ArticuloID_Articulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Inventario_LabEquipoUnico">
+    <End Role="Inventario_Lab" Type="Model_BD.Store.Inventario_Lab" Multiplicity="1" />
+    <End Role="EquipoUnico" Type="Model_BD.Store.EquipoUnico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventario_Lab">
+        <PropertyRef Name="ID_Lab" />
+      </Principal>
+      <Dependent Role="EquipoUnico">
+        <PropertyRef Name="Inventario_LabID_Lab" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EquipoUnicoPrestamo">
+    <End Role="EquipoUnico" Type="Model_BD.Store.EquipoUnico" Multiplicity="1" />
+    <End Role="Prestamo" Type="Model_BD.Store.Prestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipoUnico">
+        <PropertyRef Name="ID_Equipo" />
+      </Principal>
+      <Dependent Role="Prestamo">
+        <PropertyRef Name="EquipoUnicoID_Equipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Carrera_UsuarioUsuario">
+    <End Role="Carrera_Usuario" Type="Model_BD.Store.Carrera_Usuario" Multiplicity="1" />
+    <End Role="Usuario" Type="Model_BD.Store.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrera_Usuario">
+        <PropertyRef Name="ID_Carrera" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="Carrera_UsuarioID_Carrera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UsuarioPrestamo">
+    <End Role="Usuario" Type="Model_BD.Store.Usuario" Multiplicity="1" />
+    <End Role="Prestamo" Type="Model_BD.Store.Prestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="ID_User" />
+      </Principal>
+      <Dependent Role="Prestamo">
+        <PropertyRef Name="UsuarioID_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PrestamoRegistro_Estados">
+    <End Role="Prestamo" Type="Model_BD.Store.Prestamo" Multiplicity="1" />
+    <End Role="Registro_Estados" Type="Model_BD.Store.Registro_EstadosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prestamo">
+        <PropertyRef Name="ID_Prestamo" />
+      </Principal>
+      <Dependent Role="Registro_Estados">
+        <PropertyRef Name="PrestamoID_Prestamo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EstadosRegistro_Estados">
+    <End Role="Estados" Type="Model_BD.Store.Estados" Multiplicity="1" />
+    <End Role="Registro_Estados" Type="Model_BD.Store.Registro_EstadosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados">
+        <PropertyRef Name="ID_Estado" />
+      </Principal>
+      <Dependent Role="Registro_Estados">
+        <PropertyRef Name="EstadosID_Estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model_BD" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model_BDContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EquipoUnico" EntityType="Model_BD.EquipoUnico" />
+          <EntitySet Name="Tipo_Articulo" EntityType="Model_BD.Tipo_Articulo" />
+          <EntitySet Name="Inventario_Lab" EntityType="Model_BD.Inventario_Lab" />
+          <EntitySet Name="Prestamo" EntityType="Model_BD.Prestamo" />
+          <EntitySet Name="Usuario" EntityType="Model_BD.Usuario" />
+          <EntitySet Name="Carrera_Usuario" EntityType="Model_BD.Carrera_Usuario" />
+          <AssociationSet Name="Tipo_ArticuloEquipoUnico" Association="Model_BD.Tipo_ArticuloEquipoUnico">
+            <End Role="Tipo_Articulo" EntitySet="Tipo_Articulo" />
+            <End Role="EquipoUnico" EntitySet="EquipoUnico" />
+          </AssociationSet>
+          <AssociationSet Name="Inventario_LabEquipoUnico" Association="Model_BD.Inventario_LabEquipoUnico">
+            <End Role="Inventario_Lab" EntitySet="Inventario_Lab" />
+            <End Role="EquipoUnico" EntitySet="EquipoUnico" />
+          </AssociationSet>
+          <AssociationSet Name="EquipoUnicoPrestamo" Association="Model_BD.EquipoUnicoPrestamo">
+            <End Role="EquipoUnico" EntitySet="EquipoUnico" />
+            <End Role="Prestamo" EntitySet="Prestamo" />
+          </AssociationSet>
+          <AssociationSet Name="Carrera_UsuarioUsuario" Association="Model_BD.Carrera_UsuarioUsuario">
+            <End Role="Carrera_Usuario" EntitySet="Carrera_Usuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="UsuarioPrestamo" Association="Model_BD.UsuarioPrestamo">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Prestamo" EntitySet="Prestamo" />
+          </AssociationSet>
+          <EntitySet Name="Registro_EstadosSet" EntityType="Model_BD.Registro_Estados" />
+          <AssociationSet Name="PrestamoRegistro_Estados" Association="Model_BD.PrestamoRegistro_Estados">
+            <End Role="Prestamo" EntitySet="Prestamo" />
+            <End Role="Registro_Estados" EntitySet="Registro_EstadosSet" />
+          </AssociationSet>
+          <EntitySet Name="Estados" EntityType="Model_BD.Estados" />
+          <AssociationSet Name="EstadosRegistro_Estados" Association="Model_BD.EstadosRegistro_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Registro_Estados" EntitySet="Registro_EstadosSet" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="EquipoUnico">
+          <Key>
+            <PropertyRef Name="ID_Equipo" />
+          </Key>
+          <Property Name="ID_Equipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Num_Serie" Type="String" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tipo_Articulo" Relationship="Model_BD.Tipo_ArticuloEquipoUnico" FromRole="EquipoUnico" ToRole="Tipo_Articulo" />
+          <Property Name="Tipo_ArticuloID_Articulo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Inventario_Lab" Relationship="Model_BD.Inventario_LabEquipoUnico" FromRole="EquipoUnico" ToRole="Inventario_Lab" />
+          <Property Name="Inventario_LabID_Lab" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Prestamo" Relationship="Model_BD.EquipoUnicoPrestamo" FromRole="EquipoUnico" ToRole="Prestamo" />
+        </EntityType>
+        <EntityType Name="Tipo_Articulo">
+          <Key>
+            <PropertyRef Name="ID_Articulo" />
+          </Key>
+          <Property Name="ID_Articulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_Articulo" Type="String" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EquipoUnico" Relationship="Model_BD.Tipo_ArticuloEquipoUnico" FromRole="Tipo_Articulo" ToRole="EquipoUnico" />
+        </EntityType>
+        <EntityType Name="Inventario_Lab">
+          <Key>
+            <PropertyRef Name="ID_Lab" />
+          </Key>
+          <Property Name="ID_Lab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_Lab" Type="String" Nullable="false" />
+          <NavigationProperty Name="EquipoUnico" Relationship="Model_BD.Inventario_LabEquipoUnico" FromRole="Inventario_Lab" ToRole="EquipoUnico" />
+        </EntityType>
+        <EntityType Name="Prestamo">
+          <Key>
+            <PropertyRef Name="ID_Prestamo" />
+          </Key>
+          <Property Name="ID_Prestamo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="EquipoUnico" Relationship="Model_BD.EquipoUnicoPrestamo" FromRole="Prestamo" ToRole="EquipoUnico" />
+          <Property Name="EquipoUnicoID_Equipo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Model_BD.UsuarioPrestamo" FromRole="Prestamo" ToRole="Usuario" />
+          <Property Name="UsuarioID_User" Type="Int32" Nullable="false" />
+          <Property Name="Date_Entrega" Type="String" Nullable="false" />
+          <Property Name="Date_Vencimiento" Type="String" Nullable="false" />
+          <NavigationProperty Name="Registro_Estados" Relationship="Model_BD.PrestamoRegistro_Estados" FromRole="Prestamo" ToRole="Registro_Estados" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RUT" Type="String" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" />
+          <Property Name="Celular" Type="String" Nullable="false" />
+          <NavigationProperty Name="Carrera_Usuario" Relationship="Model_BD.Carrera_UsuarioUsuario" FromRole="Usuario" ToRole="Carrera_Usuario" />
+          <Property Name="Carrera_UsuarioID_Carrera" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Prestamo" Relationship="Model_BD.UsuarioPrestamo" FromRole="Usuario" ToRole="Prestamo" />
+          <Property Name="Nom_Usuario" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Carrera_Usuario">
+          <Key>
+            <PropertyRef Name="ID_Carrera" />
+          </Key>
+          <Property Name="ID_Carrera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_Carrera" Type="String" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Model_BD.Carrera_UsuarioUsuario" FromRole="Carrera_Usuario" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="Tipo_ArticuloEquipoUnico">
+          <End Type="Model_BD.Tipo_Articulo" Role="Tipo_Articulo" Multiplicity="1" />
+          <End Type="Model_BD.EquipoUnico" Role="EquipoUnico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Articulo">
+              <PropertyRef Name="ID_Articulo" />
+            </Principal>
+            <Dependent Role="EquipoUnico">
+              <PropertyRef Name="Tipo_ArticuloID_Articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Inventario_LabEquipoUnico">
+          <End Type="Model_BD.Inventario_Lab" Role="Inventario_Lab" Multiplicity="1" />
+          <End Type="Model_BD.EquipoUnico" Role="EquipoUnico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventario_Lab">
+              <PropertyRef Name="ID_Lab" />
+            </Principal>
+            <Dependent Role="EquipoUnico">
+              <PropertyRef Name="Inventario_LabID_Lab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EquipoUnicoPrestamo">
+          <End Type="Model_BD.EquipoUnico" Role="EquipoUnico" Multiplicity="1" />
+          <End Type="Model_BD.Prestamo" Role="Prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipoUnico">
+              <PropertyRef Name="ID_Equipo" />
+            </Principal>
+            <Dependent Role="Prestamo">
+              <PropertyRef Name="EquipoUnicoID_Equipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Carrera_UsuarioUsuario">
+          <End Type="Model_BD.Carrera_Usuario" Role="Carrera_Usuario" Multiplicity="1" />
+          <End Type="Model_BD.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera_Usuario">
+              <PropertyRef Name="ID_Carrera" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Carrera_UsuarioID_Carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsuarioPrestamo">
+          <End Type="Model_BD.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="Model_BD.Prestamo" Role="Prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="Prestamo">
+              <PropertyRef Name="UsuarioID_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Registro_Estados">
+          <Key>
+            <PropertyRef Name="ID_Reg_Est" />
+          </Key>
+          <Property Name="ID_Reg_Est" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Prestamo" Relationship="Model_BD.PrestamoRegistro_Estados" FromRole="Registro_Estados" ToRole="Prestamo" />
+          <Property Name="PrestamoID_Prestamo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Model_BD.EstadosRegistro_Estados" FromRole="Registro_Estados" ToRole="Estados" />
+          <Property Name="EstadosID_Estado" Type="Int32" Nullable="false" />
+          <Property Name="Date_Registro" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="PrestamoRegistro_Estados">
+          <End Type="Model_BD.Prestamo" Role="Prestamo" Multiplicity="1" />
+          <End Type="Model_BD.Registro_Estados" Role="Registro_Estados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prestamo">
+              <PropertyRef Name="ID_Prestamo" />
+            </Principal>
+            <Dependent Role="Registro_Estados">
+              <PropertyRef Name="PrestamoID_Prestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="ID_Estado" />
+          </Key>
+          <Property Name="ID_Estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_Estado" Type="String" Nullable="false" />
+          <NavigationProperty Name="Registro_Estados" Relationship="Model_BD.EstadosRegistro_Estados" FromRole="Estados" ToRole="Registro_Estados" />
+        </EntityType>
+        <Association Name="EstadosRegistro_Estados">
+          <End Type="Model_BD.Estados" Role="Estados" Multiplicity="1" />
+          <End Type="Model_BD.Registro_Estados" Role="Registro_Estados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="ID_Estado" />
+            </Principal>
+            <Dependent Role="Registro_Estados">
+              <PropertyRef Name="EstadosID_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model_BDStoreContainer" CdmEntityContainer="Model_BDContainer">
+    <EntitySetMapping Name="EquipoUnico">
+      <EntityTypeMapping TypeName="IsTypeOf(Model_BD.EquipoUnico)">
+        <MappingFragment StoreEntitySet="EquipoUnico">
+          <ScalarProperty Name="ID_Equipo" ColumnName="ID_Equipo" />
+          <ScalarProperty Name="Num_Serie" ColumnName="Num_Serie" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Tipo_ArticuloID_Articulo" ColumnName="Tipo_ArticuloID_Articulo" />
+          <ScalarProperty Name="Inventario_LabID_Lab" ColumnName="Inventario_LabID_Lab" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipo_Articulo">
+      <EntityTypeMapping TypeName="IsTypeOf(Model_BD.Tipo_Articulo)">
+        <MappingFragment StoreEntitySet="Tipo_Articulo">
+          <ScalarProperty Name="ID_Articulo" ColumnName="ID_Articulo" />
+          <ScalarProperty Name="Nom_Articulo" ColumnName="Nom_Articulo" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventario_Lab">
+      <EntityTypeMapping TypeName="IsTypeOf(Model_BD.Inventario_Lab)">
+        <MappingFragment StoreEntitySet="Inventario_Lab">
+          <ScalarProperty Name="ID_Lab" ColumnName="ID_Lab" />
+          <ScalarProperty Name="Nom_Lab" ColumnName="Nom_Lab" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prestamo">
+      <EntityTypeMapping TypeName="IsTypeOf(Model_BD.Prestamo)">
+        <MappingFragment StoreEntitySet="Prestamo">
+          <ScalarProperty Name="ID_Prestamo" ColumnName="ID_Prestamo" />
+          <ScalarProperty Name="EquipoUnicoID_Equipo" ColumnName="EquipoUnicoID_Equipo" />
+          <ScalarProperty Name="UsuarioID_User" ColumnName="UsuarioID_User" />
+          <ScalarProperty Name="Date_Entrega" ColumnName="Date_Entrega" />
+          <ScalarProperty Name="Date_Vencimiento" ColumnName="Date_Vencimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="IsTypeOf(Model_BD.Usuario)">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+          <ScalarProperty Name="RUT" ColumnName="RUT" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="Carrera_UsuarioID_Carrera" ColumnName="Carrera_UsuarioID_Carrera" />
+          <ScalarProperty Name="Nom_Usuario" ColumnName="Nom_Usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carrera_Usuario">
+      <EntityTypeMapping TypeName="IsTypeOf(Model_BD.Carrera_Usuario)">
+        <MappingFragment StoreEntitySet="Carrera_Usuario">
+          <ScalarProperty Name="ID_Carrera" ColumnName="ID_Carrera" />
+          <ScalarProperty Name="Nom_Carrera" ColumnName="Nom_Carrera" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Registro_EstadosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model_BD.Registro_Estados)">
+        <MappingFragment StoreEntitySet="Registro_EstadosSet">
+          <ScalarProperty Name="ID_Reg_Est" ColumnName="ID_Reg_Est" />
+          <ScalarProperty Name="PrestamoID_Prestamo" ColumnName="PrestamoID_Prestamo" />
+          <ScalarProperty Name="EstadosID_Estado" ColumnName="EstadosID_Estado" />
+          <ScalarProperty Name="Date_Registro" ColumnName="Date_Registo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estados">
+      <EntityTypeMapping TypeName="IsTypeOf(Model_BD.Estados)">
+        <MappingFragment StoreEntitySet="Estados">
+          <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
+          <ScalarProperty Name="Nom_Estado" ColumnName="Nom_Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

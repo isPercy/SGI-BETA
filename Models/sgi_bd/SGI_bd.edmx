@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SGI_bd.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="SGI_bdStoreContainer">
+    <EntitySet Name="Inventario_Carrera" EntityType="SGI_bd.Store.Inventario_Carrera" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EquipoUnico" EntityType="SGI_bd.Store.EquipoUnico" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tipo_Articulo" EntityType="SGI_bd.Store.Tipo_Articulo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Prestamo" EntityType="SGI_bd.Store.Prestamo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Nav_EstadoPrestamo" EntityType="SGI_bd.Store.Nav_EstadoPrestamo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Estados" EntityType="SGI_bd.Store.Estados" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Carrera_Usuario" EntityType="SGI_bd.Store.Carrera_Usuario" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Usuario" EntityType="SGI_bd.Store.Usuario" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="Inventario_CarreraEquipoUnico" Association="SGI_bd.Store.Inventario_CarreraEquipoUnico">
+      <End Role="Inventario_Carrera" EntitySet="Inventario_Carrera" />
+      <End Role="EquipoUnico" EntitySet="EquipoUnico" />
+    </AssociationSet>
+    <AssociationSet Name="Tipo_ArticuloEquipoUnico" Association="SGI_bd.Store.Tipo_ArticuloEquipoUnico">
+      <End Role="Tipo_Articulo" EntitySet="Tipo_Articulo" />
+      <End Role="EquipoUnico" EntitySet="EquipoUnico" />
+    </AssociationSet>
+    <AssociationSet Name="EquipoUnicoPrestamo" Association="SGI_bd.Store.EquipoUnicoPrestamo">
+      <End Role="EquipoUnico" EntitySet="EquipoUnico" />
+      <End Role="Prestamo" EntitySet="Prestamo" />
+    </AssociationSet>
+    <AssociationSet Name="PrestamoNav_EstadoPrestamo" Association="SGI_bd.Store.PrestamoNav_EstadoPrestamo">
+      <End Role="Prestamo" EntitySet="Prestamo" />
+      <End Role="Nav_EstadoPrestamo" EntitySet="Nav_EstadoPrestamo" />
+    </AssociationSet>
+    <AssociationSet Name="UsuarioPrestamo" Association="SGI_bd.Store.UsuarioPrestamo">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Prestamo" EntitySet="Prestamo" />
+    </AssociationSet>
+    <AssociationSet Name="EstadosNav_EstadoPrestamo" Association="SGI_bd.Store.EstadosNav_EstadoPrestamo">
+      <End Role="Estados" EntitySet="Estados" />
+      <End Role="Nav_EstadoPrestamo" EntitySet="Nav_EstadoPrestamo" />
+    </AssociationSet>
+    <AssociationSet Name="Carrera_UsuarioUsuario" Association="SGI_bd.Store.Carrera_UsuarioUsuario">
+      <End Role="Carrera_Usuario" EntitySet="Carrera_Usuario" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Inventario_Carrera">
+    <Key>
+      <PropertyRef Name="ID_Inventario_Carrera" />
+    </Key>
+    <Property Name="ID_Inventario_Carrera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Carrera" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EquipoUnico">
+    <Key>
+      <PropertyRef Name="ID_Serie" />
+    </Key>
+    <Property Name="ID_Serie" Type="int" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+    <Property Name="Inventario_CarreraID_Inventario_Carrera" Type="int" Nullable="false" />
+    <Property Name="Tipo_ArticuloID_Articulo" Type="int" Nullable="false" />
+    <Property Name="Codigo_Serie" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tipo_Articulo">
+    <Key>
+      <PropertyRef Name="ID_Articulo" />
+    </Key>
+    <Property Name="ID_Articulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Articulo" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Prestamo">
+    <Key>
+      <PropertyRef Name="ID_Prestamo" />
+    </Key>
+    <Property Name="ID_Prestamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date_Entrega" Type="datetime" Nullable="false" />
+    <Property Name="Date_Vencimiento" Type="datetime" Nullable="false" />
+    <Property Name="Date_Devolucion" Type="datetime" Nullable="false" />
+    <Property Name="EquipoUnicoID_Serie" Type="int" Nullable="false" />
+    <Property Name="UsuarioID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Nav_EstadoPrestamo">
+    <Key>
+      <PropertyRef Name="ID_Seguimiento_Estado" />
+    </Key>
+    <Property Name="ID_Seguimiento_Estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrestamoID_Prestamo" Type="int" Nullable="false" />
+    <Property Name="EstadosID_Estado" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Estados">
+    <Key>
+      <PropertyRef Name="ID_Estado" />
+    </Key>
+    <Property Name="ID_Estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Estado" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Carrera_Usuario">
+    <Key>
+      <PropertyRef Name="ID_Carrera" />
+    </Key>
+    <Property Name="ID_Carrera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Carerra" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Carrera_UsuarioID_Carrera" Type="int" Nullable="false" />
+    <Property Name="Correo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Num_Cell" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RUT" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="Inventario_CarreraEquipoUnico">
+    <End Role="Inventario_Carrera" Type="SGI_bd.Store.Inventario_Carrera" Multiplicity="1" />
+    <End Role="EquipoUnico" Type="SGI_bd.Store.EquipoUnico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventario_Carrera">
+        <PropertyRef Name="ID_Inventario_Carrera" />
+      </Principal>
+      <Dependent Role="EquipoUnico">
+        <PropertyRef Name="Inventario_CarreraID_Inventario_Carrera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Tipo_ArticuloEquipoUnico">
+    <End Role="Tipo_Articulo" Type="SGI_bd.Store.Tipo_Articulo" Multiplicity="1" />
+    <End Role="EquipoUnico" Type="SGI_bd.Store.EquipoUnico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Articulo">
+        <PropertyRef Name="ID_Articulo" />
+      </Principal>
+      <Dependent Role="EquipoUnico">
+        <PropertyRef Name="Tipo_ArticuloID_Articulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EquipoUnicoPrestamo">
+    <End Role="EquipoUnico" Type="SGI_bd.Store.EquipoUnico" Multiplicity="1" />
+    <End Role="Prestamo" Type="SGI_bd.Store.Prestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipoUnico">
+        <PropertyRef Name="ID_Serie" />
+      </Principal>
+      <Dependent Role="Prestamo">
+        <PropertyRef Name="EquipoUnicoID_Serie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PrestamoNav_EstadoPrestamo">
+    <End Role="Prestamo" Type="SGI_bd.Store.Prestamo" Multiplicity="1" />
+    <End Role="Nav_EstadoPrestamo" Type="SGI_bd.Store.Nav_EstadoPrestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prestamo">
+        <PropertyRef Name="ID_Prestamo" />
+      </Principal>
+      <Dependent Role="Nav_EstadoPrestamo">
+        <PropertyRef Name="PrestamoID_Prestamo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UsuarioPrestamo">
+    <End Role="Usuario" Type="SGI_bd.Store.Usuario" Multiplicity="1" />
+    <End Role="Prestamo" Type="SGI_bd.Store.Prestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Prestamo">
+        <PropertyRef Name="UsuarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EstadosNav_EstadoPrestamo">
+    <End Role="Estados" Type="SGI_bd.Store.Estados" Multiplicity="1" />
+    <End Role="Nav_EstadoPrestamo" Type="SGI_bd.Store.Nav_EstadoPrestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados">
+        <PropertyRef Name="ID_Estado" />
+      </Principal>
+      <Dependent Role="Nav_EstadoPrestamo">
+        <PropertyRef Name="EstadosID_Estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Carrera_UsuarioUsuario">
+    <End Role="Carrera_Usuario" Type="SGI_bd.Store.Carrera_Usuario" Multiplicity="1" />
+    <End Role="Usuario" Type="SGI_bd.Store.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrera_Usuario">
+        <PropertyRef Name="ID_Carrera" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="Carrera_UsuarioID_Carrera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="SGI_bd" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="SGI_bdContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Inventario_Carrera" EntityType="SGI_bd.Inventario_Carrera" />
+          <EntitySet Name="EquipoUnico" EntityType="SGI_bd.EquipoUnico" />
+          <EntitySet Name="Tipo_Articulo" EntityType="SGI_bd.Tipo_Articulo" />
+          <EntitySet Name="Prestamo" EntityType="SGI_bd.Prestamo" />
+          <EntitySet Name="Nav_EstadoPrestamo" EntityType="SGI_bd.Nav_EstadoPrestamo" />
+          <EntitySet Name="Estados" EntityType="SGI_bd.Estados" />
+          <EntitySet Name="Carrera_Usuario" EntityType="SGI_bd.Carrera_Usuario" />
+          <EntitySet Name="Usuario" EntityType="SGI_bd.Usuario" />
+          <AssociationSet Name="Inventario_CarreraEquipoUnico" Association="SGI_bd.Inventario_CarreraEquipoUnico">
+            <End Role="Inventario_Carrera" EntitySet="Inventario_Carrera" />
+            <End Role="EquipoUnico" EntitySet="EquipoUnico" />
+          </AssociationSet>
+          <AssociationSet Name="Tipo_ArticuloEquipoUnico" Association="SGI_bd.Tipo_ArticuloEquipoUnico">
+            <End Role="Tipo_Articulo" EntitySet="Tipo_Articulo" />
+            <End Role="EquipoUnico" EntitySet="EquipoUnico" />
+          </AssociationSet>
+          <AssociationSet Name="EquipoUnicoPrestamo" Association="SGI_bd.EquipoUnicoPrestamo">
+            <End Role="EquipoUnico" EntitySet="EquipoUnico" />
+            <End Role="Prestamo" EntitySet="Prestamo" />
+          </AssociationSet>
+          <AssociationSet Name="PrestamoNav_EstadoPrestamo" Association="SGI_bd.PrestamoNav_EstadoPrestamo">
+            <End Role="Prestamo" EntitySet="Prestamo" />
+            <End Role="Nav_EstadoPrestamo" EntitySet="Nav_EstadoPrestamo" />
+          </AssociationSet>
+          <AssociationSet Name="UsuarioPrestamo" Association="SGI_bd.UsuarioPrestamo">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Prestamo" EntitySet="Prestamo" />
+          </AssociationSet>
+          <AssociationSet Name="EstadosNav_EstadoPrestamo" Association="SGI_bd.EstadosNav_EstadoPrestamo">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Nav_EstadoPrestamo" EntitySet="Nav_EstadoPrestamo" />
+          </AssociationSet>
+          <AssociationSet Name="Carrera_UsuarioUsuario" Association="SGI_bd.Carrera_UsuarioUsuario">
+            <End Role="Carrera_Usuario" EntitySet="Carrera_Usuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Inventario_Carrera">
+          <Key>
+            <PropertyRef Name="ID_Inventario_Carrera" />
+          </Key>
+          <Property Name="ID_Inventario_Carrera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_Carrera" Type="String" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EquipoUnico" Relationship="SGI_bd.Inventario_CarreraEquipoUnico" FromRole="Inventario_Carrera" ToRole="EquipoUnico" />
+        </EntityType>
+        <EntityType Name="EquipoUnico">
+          <Key>
+            <PropertyRef Name="ID_Serie" />
+          </Key>
+          <Property Name="ID_Serie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Inventario_CarreraID_Inventario_Carrera" Type="Int32" Nullable="false" />
+          <Property Name="Tipo_ArticuloID_Articulo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Inventario_Carrera" Relationship="SGI_bd.Inventario_CarreraEquipoUnico" FromRole="EquipoUnico" ToRole="Inventario_Carrera" />
+          <NavigationProperty Name="Tipo_Articulo" Relationship="SGI_bd.Tipo_ArticuloEquipoUnico" FromRole="EquipoUnico" ToRole="Tipo_Articulo" />
+          <NavigationProperty Name="Prestamo" Relationship="SGI_bd.EquipoUnicoPrestamo" FromRole="EquipoUnico" ToRole="Prestamo" />
+          <Property Name="Codigo_Serie" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_Articulo">
+          <Key>
+            <PropertyRef Name="ID_Articulo" />
+          </Key>
+          <Property Name="ID_Articulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_Articulo" Type="String" Nullable="false" />
+          <NavigationProperty Name="EquipoUnico" Relationship="SGI_bd.Tipo_ArticuloEquipoUnico" FromRole="Tipo_Articulo" ToRole="EquipoUnico" />
+        </EntityType>
+        <EntityType Name="Prestamo">
+          <Key>
+            <PropertyRef Name="ID_Prestamo" />
+          </Key>
+          <Property Name="ID_Prestamo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date_Entrega" Type="DateTime" Nullable="false" />
+          <Property Name="Date_Vencimiento" Type="DateTime" Nullable="false" />
+          <Property Name="Date_Devolucion" Type="DateTime" Nullable="false" />
+          <Property Name="EquipoUnicoID_Serie" Type="Int32" Nullable="false" />
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EquipoUnico" Relationship="SGI_bd.EquipoUnicoPrestamo" FromRole="Prestamo" ToRole="EquipoUnico" />
+          <NavigationProperty Name="Nav_EstadoPrestamo" Relationship="SGI_bd.PrestamoNav_EstadoPrestamo" FromRole="Prestamo" ToRole="Nav_EstadoPrestamo" />
+          <NavigationProperty Name="Usuario" Relationship="SGI_bd.UsuarioPrestamo" FromRole="Prestamo" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Nav_EstadoPrestamo">
+          <Key>
+            <PropertyRef Name="ID_Seguimiento_Estado" />
+          </Key>
+          <Property Name="ID_Seguimiento_Estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrestamoID_Prestamo" Type="Int32" Nullable="false" />
+          <Property Name="EstadosID_Estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Prestamo" Relationship="SGI_bd.PrestamoNav_EstadoPrestamo" FromRole="Nav_EstadoPrestamo" ToRole="Prestamo" />
+          <NavigationProperty Name="Estados" Relationship="SGI_bd.EstadosNav_EstadoPrestamo" FromRole="Nav_EstadoPrestamo" ToRole="Estados" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="ID_Estado" />
+          </Key>
+          <Property Name="ID_Estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_Estado" Type="String" Nullable="false" />
+          <NavigationProperty Name="Nav_EstadoPrestamo" Relationship="SGI_bd.EstadosNav_EstadoPrestamo" FromRole="Estados" ToRole="Nav_EstadoPrestamo" />
+        </EntityType>
+        <EntityType Name="Carrera_Usuario">
+          <Key>
+            <PropertyRef Name="ID_Carrera" />
+          </Key>
+          <Property Name="ID_Carrera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_Carerra" Type="String" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="SGI_bd.Carrera_UsuarioUsuario" FromRole="Carrera_Usuario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Carrera_UsuarioID_Carrera" Type="Int32" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" />
+          <Property Name="Num_Cell" Type="String" Nullable="false" />
+          <NavigationProperty Name="Prestamo" Relationship="SGI_bd.UsuarioPrestamo" FromRole="Usuario" ToRole="Prestamo" />
+          <NavigationProperty Name="Carrera_Usuario" Relationship="SGI_bd.Carrera_UsuarioUsuario" FromRole="Usuario" ToRole="Carrera_Usuario" />
+          <Property Name="RUT" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="Inventario_CarreraEquipoUnico">
+          <End Type="SGI_bd.Inventario_Carrera" Role="Inventario_Carrera" Multiplicity="1" />
+          <End Type="SGI_bd.EquipoUnico" Role="EquipoUnico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventario_Carrera">
+              <PropertyRef Name="ID_Inventario_Carrera" />
+            </Principal>
+            <Dependent Role="EquipoUnico">
+              <PropertyRef Name="Inventario_CarreraID_Inventario_Carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Tipo_ArticuloEquipoUnico">
+          <End Type="SGI_bd.Tipo_Articulo" Role="Tipo_Articulo" Multiplicity="1" />
+          <End Type="SGI_bd.EquipoUnico" Role="EquipoUnico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Articulo">
+              <PropertyRef Name="ID_Articulo" />
+            </Principal>
+            <Dependent Role="EquipoUnico">
+              <PropertyRef Name="Tipo_ArticuloID_Articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EquipoUnicoPrestamo">
+          <End Type="SGI_bd.EquipoUnico" Role="EquipoUnico" Multiplicity="1" />
+          <End Type="SGI_bd.Prestamo" Role="Prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipoUnico">
+              <PropertyRef Name="ID_Serie" />
+            </Principal>
+            <Dependent Role="Prestamo">
+              <PropertyRef Name="EquipoUnicoID_Serie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PrestamoNav_EstadoPrestamo">
+          <End Type="SGI_bd.Prestamo" Role="Prestamo" Multiplicity="1" />
+          <End Type="SGI_bd.Nav_EstadoPrestamo" Role="Nav_EstadoPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prestamo">
+              <PropertyRef Name="ID_Prestamo" />
+            </Principal>
+            <Dependent Role="Nav_EstadoPrestamo">
+              <PropertyRef Name="PrestamoID_Prestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsuarioPrestamo">
+          <End Type="SGI_bd.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="SGI_bd.Prestamo" Role="Prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prestamo">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EstadosNav_EstadoPrestamo">
+          <End Type="SGI_bd.Estados" Role="Estados" Multiplicity="1" />
+          <End Type="SGI_bd.Nav_EstadoPrestamo" Role="Nav_EstadoPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="ID_Estado" />
+            </Principal>
+            <Dependent Role="Nav_EstadoPrestamo">
+              <PropertyRef Name="EstadosID_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Carrera_UsuarioUsuario">
+          <End Type="SGI_bd.Carrera_Usuario" Role="Carrera_Usuario" Multiplicity="1" />
+          <End Type="SGI_bd.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera_Usuario">
+              <PropertyRef Name="ID_Carrera" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Carrera_UsuarioID_Carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SGI_bdStoreContainer" CdmEntityContainer="SGI_bdContainer">
+    <EntitySetMapping Name="Inventario_Carrera">
+      <EntityTypeMapping TypeName="IsTypeOf(SGI_bd.Inventario_Carrera)">
+        <MappingFragment StoreEntitySet="Inventario_Carrera">
+          <ScalarProperty Name="ID_Inventario_Carrera" ColumnName="ID_Inventario_Carrera" />
+          <ScalarProperty Name="Nom_Carrera" ColumnName="Nom_Carrera" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EquipoUnico">
+      <EntityTypeMapping TypeName="IsTypeOf(SGI_bd.EquipoUnico)">
+        <MappingFragment StoreEntitySet="EquipoUnico">
+          <ScalarProperty Name="ID_Serie" ColumnName="ID_Serie" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Inventario_CarreraID_Inventario_Carrera" ColumnName="Inventario_CarreraID_Inventario_Carrera" />
+          <ScalarProperty Name="Tipo_ArticuloID_Articulo" ColumnName="Tipo_ArticuloID_Articulo" />
+          <ScalarProperty Name="Codigo_Serie" ColumnName="Codigo_Serie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipo_Articulo">
+      <EntityTypeMapping TypeName="IsTypeOf(SGI_bd.Tipo_Articulo)">
+        <MappingFragment StoreEntitySet="Tipo_Articulo">
+          <ScalarProperty Name="ID_Articulo" ColumnName="ID_Articulo" />
+          <ScalarProperty Name="Nom_Articulo" ColumnName="Nom_Articulo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prestamo">
+      <EntityTypeMapping TypeName="IsTypeOf(SGI_bd.Prestamo)">
+        <MappingFragment StoreEntitySet="Prestamo">
+          <ScalarProperty Name="ID_Prestamo" ColumnName="ID_Prestamo" />
+          <ScalarProperty Name="Date_Entrega" ColumnName="Date_Entrega" />
+          <ScalarProperty Name="Date_Vencimiento" ColumnName="Date_Vencimiento" />
+          <ScalarProperty Name="Date_Devolucion" ColumnName="Date_Devolucion" />
+          <ScalarProperty Name="EquipoUnicoID_Serie" ColumnName="EquipoUnicoID_Serie" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nav_EstadoPrestamo">
+      <EntityTypeMapping TypeName="IsTypeOf(SGI_bd.Nav_EstadoPrestamo)">
+        <MappingFragment StoreEntitySet="Nav_EstadoPrestamo">
+          <ScalarProperty Name="ID_Seguimiento_Estado" ColumnName="ID_Seguimiento_Estado" />
+          <ScalarProperty Name="PrestamoID_Prestamo" ColumnName="PrestamoID_Prestamo" />
+          <ScalarProperty Name="EstadosID_Estado" ColumnName="EstadosID_Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estados">
+      <EntityTypeMapping TypeName="IsTypeOf(SGI_bd.Estados)">
+        <MappingFragment StoreEntitySet="Estados">
+          <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
+          <ScalarProperty Name="Nom_Estado" ColumnName="Nom_Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carrera_Usuario">
+      <EntityTypeMapping TypeName="IsTypeOf(SGI_bd.Carrera_Usuario)">
+        <MappingFragment StoreEntitySet="Carrera_Usuario">
+          <ScalarProperty Name="ID_Carrera" ColumnName="ID_Carrera" />
+          <ScalarProperty Name="Nom_Carerra" ColumnName="Nom_Carerra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="IsTypeOf(SGI_bd.Usuario)">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Carrera_UsuarioID_Carrera" ColumnName="Carrera_UsuarioID_Carrera" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Num_Cell" ColumnName="Num_Cell" />
+          <ScalarProperty Name="RUT" ColumnName="RUT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
