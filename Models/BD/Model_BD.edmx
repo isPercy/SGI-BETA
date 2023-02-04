@@ -103,7 +103,7 @@
     <Property Name="ID_Reg_Est" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PrestamoID_Prestamo" Type="int" Nullable="false" />
     <Property Name="EstadosID_Estado" Type="int" Nullable="false" />
-    <Property Name="Date_Registo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date_Registro" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Estados">
     <Key>
@@ -243,7 +243,7 @@
             <PropertyRef Name="ID_Equipo" />
           </Key>
           <Property Name="ID_Equipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Num_Serie" Type="String" Nullable="false" />
+          <Property Name="Num_Serie" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Tipo_Articulo" Relationship="Model_BD.Tipo_ArticuloEquipoUnico" FromRole="EquipoUnico" ToRole="Tipo_Articulo" />
           <Property Name="Tipo_ArticuloID_Articulo" Type="Int32" Nullable="false" />
@@ -256,7 +256,7 @@
             <PropertyRef Name="ID_Articulo" />
           </Key>
           <Property Name="ID_Articulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nom_Articulo" Type="String" Nullable="false" />
+          <Property Name="Nom_Articulo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="EquipoUnico" Relationship="Model_BD.Tipo_ArticuloEquipoUnico" FromRole="Tipo_Articulo" ToRole="EquipoUnico" />
         </EntityType>
@@ -265,7 +265,7 @@
             <PropertyRef Name="ID_Lab" />
           </Key>
           <Property Name="ID_Lab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nom_Lab" Type="String" Nullable="false" />
+          <Property Name="Nom_Lab" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="EquipoUnico" Relationship="Model_BD.Inventario_LabEquipoUnico" FromRole="Inventario_Lab" ToRole="EquipoUnico" />
         </EntityType>
         <EntityType Name="Prestamo">
@@ -277,8 +277,8 @@
           <Property Name="EquipoUnicoID_Equipo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Usuario" Relationship="Model_BD.UsuarioPrestamo" FromRole="Prestamo" ToRole="Usuario" />
           <Property Name="UsuarioID_User" Type="Int32" Nullable="false" />
-          <Property Name="Date_Entrega" Type="String" Nullable="false" />
-          <Property Name="Date_Vencimiento" Type="String" Nullable="false" />
+          <Property Name="Date_Entrega" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Date_Vencimiento" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Registro_Estados" Relationship="Model_BD.PrestamoRegistro_Estados" FromRole="Prestamo" ToRole="Registro_Estados" />
         </EntityType>
         <EntityType Name="Usuario">
@@ -286,20 +286,20 @@
             <PropertyRef Name="ID_User" />
           </Key>
           <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RUT" Type="String" Nullable="false" />
-          <Property Name="Correo" Type="String" Nullable="false" />
-          <Property Name="Celular" Type="String" Nullable="false" />
+          <Property Name="RUT" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Celular" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Carrera_Usuario" Relationship="Model_BD.Carrera_UsuarioUsuario" FromRole="Usuario" ToRole="Carrera_Usuario" />
           <Property Name="Carrera_UsuarioID_Carrera" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Prestamo" Relationship="Model_BD.UsuarioPrestamo" FromRole="Usuario" ToRole="Prestamo" />
-          <Property Name="Nom_Usuario" Type="String" Nullable="false" />
+          <Property Name="Nom_Usuario" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Carrera_Usuario">
           <Key>
             <PropertyRef Name="ID_Carrera" />
           </Key>
           <Property Name="ID_Carrera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nom_Carrera" Type="String" Nullable="false" />
+          <Property Name="Nom_Carrera" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Usuario" Relationship="Model_BD.Carrera_UsuarioUsuario" FromRole="Carrera_Usuario" ToRole="Usuario" />
         </EntityType>
         <Association Name="Tipo_ArticuloEquipoUnico">
@@ -371,7 +371,7 @@
           <Property Name="PrestamoID_Prestamo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Estados" Relationship="Model_BD.EstadosRegistro_Estados" FromRole="Registro_Estados" ToRole="Estados" />
           <Property Name="EstadosID_Estado" Type="Int32" Nullable="false" />
-          <Property Name="Date_Registro" Type="String" Nullable="false" />
+          <Property Name="Date_Registro" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <Association Name="PrestamoRegistro_Estados">
           <End Type="Model_BD.Prestamo" Role="Prestamo" Multiplicity="1" />
@@ -390,7 +390,7 @@
             <PropertyRef Name="ID_Estado" />
           </Key>
           <Property Name="ID_Estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nom_Estado" Type="String" Nullable="false" />
+          <Property Name="Nom_Estado" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Registro_Estados" Relationship="Model_BD.EstadosRegistro_Estados" FromRole="Estados" ToRole="Registro_Estados" />
         </EntityType>
         <Association Name="EstadosRegistro_Estados">
@@ -476,7 +476,7 @@
           <ScalarProperty Name="ID_Reg_Est" ColumnName="ID_Reg_Est" />
           <ScalarProperty Name="PrestamoID_Prestamo" ColumnName="PrestamoID_Prestamo" />
           <ScalarProperty Name="EstadosID_Estado" ColumnName="EstadosID_Estado" />
-          <ScalarProperty Name="Date_Registro" ColumnName="Date_Registo" />
+          <ScalarProperty Name="Date_Registro" ColumnName="Date_Registro" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -504,6 +504,7 @@
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

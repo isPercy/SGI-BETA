@@ -17,21 +17,18 @@ namespace Models.BD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EquipoUnico()
         {
-            this.prestamo = new HashSet<Prestamo>();
+            this.Prestamo = new HashSet<Prestamo>();
         }
-
+    
         public int ID_Equipo { get; set; }
         public string Num_Serie { get; set; }
         public bool Activo { get; set; }
         public int Tipo_ArticuloID_Articulo { get; set; }
         public int Inventario_LabID_Lab { get; set; }
-
-
-        public virtual Inventario_Lab Inventario_Lab { get; set; }
+    
         public virtual Tipo_Articulo Tipo_Articulo { get; set; }
+        public virtual Inventario_Lab Inventario_Lab { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prestamo> prestamo { get; set; }
-
-
+        public virtual ICollection<Prestamo> Prestamo { get; set; }
     }
 }

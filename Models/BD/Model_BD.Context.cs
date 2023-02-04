@@ -19,6 +19,7 @@ namespace Models.BD
             : base("name=Model_BDContainer")
         {
         }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
