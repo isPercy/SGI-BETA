@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.ViewModels
 {
-    internal class CarreraViewModel
+    public class CarreraViewModel
     {
         public int ID_Carrera { get; set; }
         public string Nom_Carrera { get; set; }

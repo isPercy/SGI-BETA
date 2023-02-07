@@ -67,6 +67,7 @@
     </Key>
     <Property Name="ID_Lab" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nom_Lab" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Prestamo">
     <Key>
@@ -267,6 +268,7 @@
           <Property Name="ID_Lab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nom_Lab" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="EquipoUnico" Relationship="Model_BD.Inventario_LabEquipoUnico" FromRole="Inventario_Lab" ToRole="EquipoUnico" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Prestamo">
           <Key>
@@ -436,6 +438,7 @@
         <MappingFragment StoreEntitySet="Inventario_Lab">
           <ScalarProperty Name="ID_Lab" ColumnName="ID_Lab" />
           <ScalarProperty Name="Nom_Lab" ColumnName="Nom_Lab" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

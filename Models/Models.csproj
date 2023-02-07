@@ -90,6 +90,7 @@
       <DependentUpon>Model_BD.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ArticuloViewModel.cs" />
+    <Compile Include="ViewModels\ARTxLAB.cs" />
     <Compile Include="ViewModels\CarreraViewModel.cs" />
     <Compile Include="ViewModels\EstadoViewModel.cs" />
     <Compile Include="ViewModels\PrestamoViewModel.cs" />

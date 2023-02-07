@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.ViewModels
 {
-    internal class UsuarioViewModel
+    public class UsuarioViewModel
     {
         public int ID_User { get; set; }
         public string RUT { get; set; }

@@ -57,18 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SGI-FormEditEquipo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SGI-FormEditEquipo.Designer.cs">
-      <DependentUpon>SGI-FormEditEquipo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SGI-FormPres.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SGI-FormPres.Designer.cs">
-      <DependentUpon>SGI-FormPres.cs</DependentUpon>
-    </Compile>
     <Compile Include="SGI-FormInv.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,9 +71,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="SGI-FormEditEquipo.resx">
-      <DependentUpon>SGI-FormEditEquipo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SGI-FormInv.resx">
       <DependentUpon>SGI-FormInv.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,9 +86,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SGI-FormPres.resx">
-      <DependentUpon>SGI-FormPres.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

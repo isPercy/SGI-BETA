@@ -27,11 +27,12 @@ namespace SGI_View
         private void btn_Pres_Click(object sender, EventArgs e)
         {
         }
+
         private Form activeForm=null;
         public void openPanelForm(Form FormHijo)
         {
             if(activeForm!=null)
-                activeForm.Close();
+            activeForm.Close();
             activeForm = FormHijo;
             FormHijo.TopLevel = false;
             FormHijo.FormBorderStyle = FormBorderStyle.None;
@@ -42,6 +43,9 @@ namespace SGI_View
             FormHijo.Show();
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
 }

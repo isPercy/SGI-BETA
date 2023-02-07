@@ -22,6 +22,7 @@ namespace Models.BD
     
         public int ID_Lab { get; set; }
         public string Nom_Lab { get; set; }
+        public bool Activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EquipoUnico> EquipoUnico { get; set; }

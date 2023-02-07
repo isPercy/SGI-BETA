@@ -14,7 +14,7 @@ namespace SGI_View
     {
         public int uwu;
         Controllers.cbController ocbController = new Controllers.cbController();
-        Controllers.FillInv.FillEquipo oFillEquipo = new Controllers.FillInv.FillEquipo();
+        //Controllers.FillInv.FillEquipo oFillEquipo = new Controllers.FillInv.FillEquipo();
 
         public FormInv()
         {
@@ -35,7 +35,7 @@ namespace SGI_View
             cb_Art.DisplayMember = "Nom_Articulo";
 
             //EQUIPOS MOSTRADOS
-            dataGridView2.DataSource = oFillEquipo.EquiposGetList();
+            dataGridView.DataSource = ocbController.EquiposGetList();
 
             cb_Art.Text = ("Seleccionar");
             cb_Lab.Text = ("Seleccionar");
@@ -45,42 +45,42 @@ namespace SGI_View
         #region Cargar con Lab
         private void cb_Lab_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ////Mostrar equipos filtrando solo por Lab
-            //try
-            //{
-            //    int ValueLab = (int)cb_Lab.SelectedValue;
-            //    cb_Art.DataSource = ocbController.Art_por_Lab(ValueLab);
-            //    cb_Art.ValueMember = "ID_Articulo";
-            //    cb_Art.DisplayMember = "Nom_Articulo";
+            //Mostrar equipos filtrando solo por Lab
+            try
+            {
+                int ValueLab = (int)cb_Lab.SelectedValue;
+                cb_Art.DataSource = ocbController.Art_por_Lab(ValueLab);
+                cb_Art.ValueMember = "ID_Articulo";
+                cb_Art.DisplayMember = "Nom_Articulo";
 
-            //    dataGridView2.DataSource = oFillEquipo.EquiposGetList1(ValueLab);
-            //    uwu = ValueLab;
-            //}
-            //catch (InvalidCastException ex)
-            //{
-            //}
+                dataGridView.DataSource = ocbController.EquiposGetList1(ValueLab);
+                //uwu = ValueLab;
+            }
+            catch (InvalidCastException )
+            {
+            }
         }
         #endregion
 
         #region Cargar con laboratorio y articulo
         private void cb_Art_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ////Mostrar equipos filtrando por lab y art
-            //try
-            //{
-            //    int ValueArt = (int)cb_Art.SelectedValue;
-            //    dataGridView2.DataSource = oFillEquipo.EquiposGetList3(ValueArt, uwu);
-            //}
-            //catch (InvalidCastException ex)
-            //{
-            //}
+            //Mostrar equipos filtrando por lab y art
+            try
+            {
+                int ValueArt = (int)cb_Art.SelectedValue;
+                dataGridView.DataSource = ocbController.EquiposGetList3(ValueArt, uwu);
+            }
+            catch (InvalidCastException ex)
+            {
+            }
         }
         #endregion
 
         //Acciones de botones
         private void closewnd_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //this.Close();
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -89,9 +89,9 @@ namespace SGI_View
 
         private void Prestar_Click(object sender, EventArgs e)
         {
-            Frame1 n = new Frame1();
-            n.openPanelForm(new FormPres());
-            n.Show();
+            //Frame1 n = new Frame1();
+            //n.openPanelForm(new FormPres());
+            //n.Show();
         }
     }
 }

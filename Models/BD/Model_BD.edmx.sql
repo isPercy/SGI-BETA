@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/03/2023 17:57:53
+-- Date Created: 02/06/2023 13:34:07
 -- Generated from EDMX file: D:\CPI\CPI Project\SGI-View\Models\BD\Model_BD.edmx
 -- --------------------------------------------------
 
@@ -17,40 +17,37 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_Carrera_UsuarioUsuario]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Usuario] DROP CONSTRAINT [FK_Carrera_UsuarioUsuario];
-GO
-IF OBJECT_ID(N'[dbo].[FK_EquipoUnicoPrestamo]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Prestamo] DROP CONSTRAINT [FK_EquipoUnicoPrestamo];
-GO
-IF OBJECT_ID(N'[dbo].[FK_EstadosRegistro_Estados]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Registro_EstadosSet] DROP CONSTRAINT [FK_EstadosRegistro_Estados];
+IF OBJECT_ID(N'[dbo].[FK_Tipo_ArticuloEquipoUnico]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipoUnico] DROP CONSTRAINT [FK_Tipo_ArticuloEquipoUnico];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Inventario_LabEquipoUnico]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[EquipoUnico] DROP CONSTRAINT [FK_Inventario_LabEquipoUnico];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PrestamoRegistro_Estados]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Registro_EstadosSet] DROP CONSTRAINT [FK_PrestamoRegistro_Estados];
+IF OBJECT_ID(N'[dbo].[FK_EquipoUnicoPrestamo]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Prestamo] DROP CONSTRAINT [FK_EquipoUnicoPrestamo];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Tipo_ArticuloEquipoUnico]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipoUnico] DROP CONSTRAINT [FK_Tipo_ArticuloEquipoUnico];
+IF OBJECT_ID(N'[dbo].[FK_Carrera_UsuarioUsuario]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Usuario] DROP CONSTRAINT [FK_Carrera_UsuarioUsuario];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UsuarioPrestamo]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Prestamo] DROP CONSTRAINT [FK_UsuarioPrestamo];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PrestamoRegistro_Estados]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Registro_EstadosSet] DROP CONSTRAINT [FK_PrestamoRegistro_Estados];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EstadosRegistro_Estados]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Registro_EstadosSet] DROP CONSTRAINT [FK_EstadosRegistro_Estados];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Carrera_Usuario]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Carrera_Usuario];
-GO
 IF OBJECT_ID(N'[dbo].[EquipoUnico]', 'U') IS NOT NULL
     DROP TABLE [dbo].[EquipoUnico];
 GO
-IF OBJECT_ID(N'[dbo].[Estados]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Estados];
+IF OBJECT_ID(N'[dbo].[Tipo_Articulo]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Tipo_Articulo];
 GO
 IF OBJECT_ID(N'[dbo].[Inventario_Lab]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Inventario_Lab];
@@ -58,14 +55,17 @@ GO
 IF OBJECT_ID(N'[dbo].[Prestamo]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Prestamo];
 GO
+IF OBJECT_ID(N'[dbo].[Usuario]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Usuario];
+GO
+IF OBJECT_ID(N'[dbo].[Carrera_Usuario]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Carrera_Usuario];
+GO
 IF OBJECT_ID(N'[dbo].[Registro_EstadosSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Registro_EstadosSet];
 GO
-IF OBJECT_ID(N'[dbo].[Tipo_Articulo]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Tipo_Articulo];
-GO
-IF OBJECT_ID(N'[dbo].[Usuario]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Usuario];
+IF OBJECT_ID(N'[dbo].[Estados]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Estados];
 GO
 
 -- --------------------------------------------------
@@ -93,7 +93,8 @@ GO
 -- Creating table 'Inventario_Lab'
 CREATE TABLE [dbo].[Inventario_Lab] (
     [ID_Lab] int IDENTITY(1,1) NOT NULL,
-    [Nom_Lab] nvarchar(max)  NOT NULL
+    [Nom_Lab] nvarchar(max)  NOT NULL,
+    [Activo] bit  NOT NULL
 );
 GO
 

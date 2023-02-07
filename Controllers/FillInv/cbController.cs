@@ -45,24 +45,103 @@ namespace Controllers
             }
         }
 
-        ////MOSTRAR ARTICULOS DEPENDIENDO DEL LABORATORIO SELECCIONADO
-        //public IEnumerable<Models.ViewModels.ArticuloViewModel> Art_por_Lab(int xd)
-        //{
-        //    using (Models.BD.Model_BDContainer db= new Models.BD.Model_BDContainer())
-        //    {
-        //        IEnumerable<Models.ViewModels.ArticuloViewModel> search= (from a in db.Tipo_Articulo
-        //                                                                  join e in db.EquipoUnico on a.ID_Articulo equals e.Tipo_ArticuloID_Articulo
-        //                                                                  join l in db.Inventario_Lab on e.Inventario_LabID_Lab equals l.ID_Lab
-        //                                                                  where l.ID_Lab == xd
-        //                                                                  //orderby a.Nom_Articulo descending
-        //                                                                  select new Models.ViewModels.ArticuloViewModel
-        //                                                                  {
-        //                                                                      ID_Articulo = a.ID_Articulo,
-        //                                                                      Nom_Articulo = a.Nom_Articulo
-        //                                                                  }).ToList();
+        //MOSTRAR ARTICULOS DEPENDIENDO DEL LABORATORIO SELECCIONADO
+        public IEnumerable<Models.ViewModels.ARTxLAB> Art_por_Lab(int xd)
+        {
+            using (Models.BD.Model_BDContainer db = new Models.BD.Model_BDContainer())
+            {
+                IEnumerable<Models.ViewModels.ARTxLAB> lst = (from a in db.Tipo_Articulo
+                                                              join e in db.EquipoUnico on a.ID_Articulo equals e.Tipo_ArticuloID_Articulo
+                                                              where e.Inventario_LabID_Lab == xd
+                                                              select new Models.ViewModels.ARTxLAB
+                                                              {
+                                                                  ID_Articulo = a.ID_Articulo,
+                                                                  Nom_Articulo = a.Nom_Articulo
+                                                              }).ToList();
+                return lst;
+            }
+        }
 
-        //        return search;
-        //    }
-        //}
+
+        /// <summary>
+        /// //////////////////////////////////////////////// RELLENAR LISTA DE EQUIPOS ////////////////////////////////////////////////////////////
+        /// </summary>
+
+
+        public IEnumerable<Models.ViewModels.ProductoViewModel> EquiposGetList()
+        {
+            using (Models.BD.Model_BDContainer db = new Models.BD.Model_BDContainer())
+            {
+                IEnumerable<Models.ViewModels.ProductoViewModel> lst = (from d in db.EquipoUnico
+                                                                        select new Models.ViewModels.ProductoViewModel
+                                                                        {
+                                                                            ID_Equipo = d.ID_Equipo,
+                                                                            Num_Serie = d.Num_Serie,
+                                                                            Activo = d.Activo,
+                                                                            Tipo_ArticuloID_Articulo = d.Tipo_ArticuloID_Articulo,
+                                                                            Inventario_LabID_Lab = d.Inventario_LabID_Lab
+                                                                        }).ToList();
+                return lst;
+            }
+        }
+
+        public IEnumerable<Models.ViewModels.ProductoViewModel> EquiposGetList1(int xd)
+        {
+            using (Models.BD.Model_BDContainer db = new Models.BD.Model_BDContainer())
+            {
+                IEnumerable<Models.ViewModels.ProductoViewModel> lst = (from d in db.EquipoUnico
+                                                                        where d.Inventario_LabID_Lab == xd
+                                                                        select new Models.ViewModels.ProductoViewModel
+                                                                        {
+                                                                            ID_Equipo = d.ID_Equipo,
+                                                                            Num_Serie = d.Num_Serie,
+                                                                            Activo = d.Activo,
+                                                                            Tipo_ArticuloID_Articulo = d.Tipo_ArticuloID_Articulo,
+                                                                            Inventario_LabID_Lab = d.Inventario_LabID_Lab
+                                                                        }).ToList();
+                return lst;
+            }
+        }
+
+        public IEnumerable<Models.ViewModels.ProductoViewModel> EquiposGetList2(int xd)
+        {
+            using (Models.BD.Model_BDContainer db = new Models.BD.Model_BDContainer())
+            {
+                IEnumerable<Models.ViewModels.ProductoViewModel> lst = (from d in db.EquipoUnico
+                                                                        where d.Tipo_ArticuloID_Articulo == xd
+                                                                        select new Models.ViewModels.ProductoViewModel
+                                                                        {
+                                                                            ID_Equipo = d.ID_Equipo,
+                                                                            Num_Serie = d.Num_Serie,
+                                                                            Activo = d.Activo,
+                                                                            Tipo_ArticuloID_Articulo = d.Tipo_ArticuloID_Articulo,
+                                                                            Inventario_LabID_Lab = d.Inventario_LabID_Lab
+                                                                        }).ToList();
+                return lst;
+            }
+        }
+
+        public IEnumerable<Models.ViewModels.ProductoViewModel> EquiposGetList3(int xd, int dx)
+        {
+            using (Models.BD.Model_BDContainer db = new Models.BD.Model_BDContainer())
+            {
+                IEnumerable<Models.ViewModels.ProductoViewModel> lst = (from d in db.EquipoUnico
+                                                                        where d.Tipo_ArticuloID_Articulo == xd && d.Inventario_LabID_Lab == dx
+                                                                        select new Models.ViewModels.ProductoViewModel
+                                                                        {
+                                                                            ID_Equipo = d.ID_Equipo,
+                                                                            Num_Serie = d.Num_Serie,
+                                                                            Activo = d.Activo,
+                                                                            Tipo_ArticuloID_Articulo = d.Tipo_ArticuloID_Articulo,
+                                                                            Inventario_LabID_Lab = d.Inventario_LabID_Lab
+                                                                        }).ToList();
+                return lst;
+            }
+        }
+
+
+
+
+
     }
 }

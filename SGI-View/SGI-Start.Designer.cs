@@ -59,14 +59,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 511);
             this.panel1.TabIndex = 2;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btn_Pres
             // 
+            this.btn_Pres.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_Pres.FlatAppearance.BorderSize = 0;
             this.btn_Pres.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Pres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Pres.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_Pres.Location = new System.Drawing.Point(0, 209);
+            this.btn_Pres.Location = new System.Drawing.Point(0, 310);
             this.btn_Pres.Name = "btn_Pres";
             this.btn_Pres.Size = new System.Drawing.Size(200, 80);
             this.btn_Pres.TabIndex = 2;
@@ -76,11 +78,12 @@
             // 
             // btn_Inv
             // 
+            this.btn_Inv.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_Inv.FlatAppearance.BorderSize = 0;
             this.btn_Inv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Inv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Inv.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_Inv.Location = new System.Drawing.Point(0, 106);
+            this.btn_Inv.Location = new System.Drawing.Point(0, 181);
             this.btn_Inv.Name = "btn_Inv";
             this.btn_Inv.Size = new System.Drawing.Size(200, 80);
             this.btn_Inv.TabIndex = 1;
@@ -94,7 +97,7 @@
             this.LogoUVM.Dock = System.Windows.Forms.DockStyle.Top;
             this.LogoUVM.Location = new System.Drawing.Point(0, 0);
             this.LogoUVM.Name = "LogoUVM";
-            this.LogoUVM.Size = new System.Drawing.Size(200, 100);
+            this.LogoUVM.Size = new System.Drawing.Size(200, 120);
             this.LogoUVM.TabIndex = 0;
             // 
             // UVMlogo
@@ -105,7 +108,7 @@
             this.UVMlogo.Image = ((System.Drawing.Image)(resources.GetObject("UVMlogo.Image")));
             this.UVMlogo.Location = new System.Drawing.Point(20, 8);
             this.UVMlogo.Name = "UVMlogo";
-            this.UVMlogo.Size = new System.Drawing.Size(158, 83);
+            this.UVMlogo.Size = new System.Drawing.Size(158, 103);
             this.UVMlogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.UVMlogo.TabIndex = 0;
             this.UVMlogo.TabStop = false;

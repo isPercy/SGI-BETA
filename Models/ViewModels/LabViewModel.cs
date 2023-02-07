@@ -10,5 +10,6 @@ namespace Models.ViewModels
     {
         public int ID_Lab { get; set; }
         public string Nom_Lab { get; set; }
+        public bool Activo { get; set; }
     }
 }
