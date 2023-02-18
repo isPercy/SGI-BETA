@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/06/2023 13:34:07
--- Generated from EDMX file: D:\CPI\CPI Project\SGI-View\Models\BD\Model_BD.edmx
+-- Date Created: 02/11/2023 21:47:25
+-- Generated from EDMX file: D:\CPI Project\SGI-View\Models\BD\Model_BD.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [BD_CPI];
+USE [SGI_DB];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO

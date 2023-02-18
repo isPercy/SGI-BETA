@@ -57,11 +57,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SGI-AddItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SGI-AddItem.Designer.cs">
+      <DependentUpon>SGI-AddItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="SGI-FormInv.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SGI-FormInv.Designer.cs">
       <DependentUpon>SGI-FormInv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGI-FormPres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SGI-FormPres.Designer.cs">
+      <DependentUpon>SGI-FormPres.cs</DependentUpon>
     </Compile>
     <Compile Include="SGI-Start.cs">
       <SubType>Form</SubType>
@@ -71,8 +83,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="SGI-AddItem.resx">
+      <DependentUpon>SGI-AddItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SGI-FormInv.resx">
       <DependentUpon>SGI-FormInv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGI-FormPres.resx">
+      <DependentUpon>SGI-FormPres.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SGI-Start.resx">
       <DependentUpon>SGI-Start.cs</DependentUpon>

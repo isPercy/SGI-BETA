@@ -42,6 +42,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.addLab = new System.Windows.Forms.Button();
             this.Prestar = new System.Windows.Forms.Button();
+            this.btnAddEq = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,12 +66,16 @@
             // 
             // dataGridView
             // 
+            this.dataGridView.AllowUserToDeleteRows = false;
+            this.dataGridView.AllowUserToOrderColumns = true;
             this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(12, 102);
             this.dataGridView.Name = "dataGridView";
+            this.dataGridView.ReadOnly = true;
+            this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(720, 360);
             this.dataGridView.TabIndex = 14;
@@ -182,11 +187,23 @@
             this.Prestar.UseVisualStyleBackColor = true;
             this.Prestar.Click += new System.EventHandler(this.Prestar_Click);
             // 
+            // btnAddEq
+            // 
+            this.btnAddEq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddEq.Location = new System.Drawing.Point(12, 468);
+            this.btnAddEq.Name = "btnAddEq";
+            this.btnAddEq.Size = new System.Drawing.Size(75, 23);
+            this.btnAddEq.TabIndex = 25;
+            this.btnAddEq.Text = "Agregar";
+            this.btnAddEq.UseVisualStyleBackColor = true;
+            this.btnAddEq.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormInv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(744, 511);
+            this.Controls.Add(this.btnAddEq);
             this.Controls.Add(this.Prestar);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button5);
@@ -228,5 +245,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button addLab;
         private System.Windows.Forms.Button Prestar;
+        private System.Windows.Forms.Button btnAddEq;
     }
 }

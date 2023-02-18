@@ -15,7 +15,7 @@ namespace Controllers
     public class cbController
     {
 
-        //LISTA DE TODOS LOS LABORATORIOS
+        //LISTA DE TODOS LOS LABORATORIOS DEFAULT
         public IEnumerable<Models.ViewModels.LabViewModel> LabGetList()
         {
             using (Models.BD.Model_BDContainer db = new Models.BD.Model_BDContainer())
@@ -30,7 +30,7 @@ namespace Controllers
             }
         }
 
-        //LISTA DE TODOS LOS ARTICULOS
+        //LISTA DE TODOS LOS ARTICULOS DEFAULT
         public IEnumerable<Models.ViewModels.ArticuloViewModel> ArtGetList()
         {
             using (Models.BD.Model_BDContainer db = new Models.BD.Model_BDContainer())
@@ -57,7 +57,7 @@ namespace Controllers
                                                               {
                                                                   ID_Articulo = a.ID_Articulo,
                                                                   Nom_Articulo = a.Nom_Articulo
-                                                              }).ToList();
+                                                              }).Distinct().ToList();
                 return lst;
             }
         }
@@ -138,10 +138,5 @@ namespace Controllers
                 return lst;
             }
         }
-
-
-
-
-
     }
 }

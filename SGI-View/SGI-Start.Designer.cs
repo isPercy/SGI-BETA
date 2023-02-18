@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frame1));
-            this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_Pres = new System.Windows.Forms.Button();
             this.btn_Inv = new System.Windows.Forms.Button();
@@ -40,12 +39,6 @@
             this.LogoUVM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UVMlogo)).BeginInit();
             this.SuspendLayout();
-            // 
-            // directorySearcher1
-            // 
-            this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
-            this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
-            this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
             // panel1
             // 
@@ -129,7 +122,6 @@
             this.ClientSize = new System.Drawing.Size(944, 511);
             this.Controls.Add(this.panelChildForm);
             this.Controls.Add(this.panel1);
-            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(960, 550);
             this.Name = "Frame1";
             this.Text = "Sistema de Gestión de Inventario - Escuela de ingeniería y negocio UVM";
@@ -142,7 +134,6 @@
         }
 
         #endregion
-        private System.DirectoryServices.DirectorySearcher directorySearcher1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_Pres;
         private System.Windows.Forms.Button btn_Inv;

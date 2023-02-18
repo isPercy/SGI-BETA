@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FillInv\FillEquipo.cs" />
+    <Compile Include="FillInv\AddEquipo.cs" />
     <Compile Include="FillInv\cbController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

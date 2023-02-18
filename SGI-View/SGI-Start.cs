@@ -26,26 +26,28 @@ namespace SGI_View
         }
         private void btn_Pres_Click(object sender, EventArgs e)
         {
+            openPanelForm(new SGI_FormPres());
         }
-
-        private Form activeForm=null;
+        #region Función Desplegar Formulario en Panel Hijo
+        private Form activeForm = null;
         public void openPanelForm(Form FormHijo)
         {
-            if(activeForm!=null)
-            activeForm.Close();
+            activeForm?.Close();
             activeForm = FormHijo;
             FormHijo.TopLevel = false;
-            FormHijo.FormBorderStyle = FormBorderStyle.None;
-            FormHijo.Dock= DockStyle.Fill;
+            //FormHijo.FormBorderStyle = FormBorderStyle.None;
+            //FormHijo.Dock = DockStyle.Fill;
             panelChildForm.Controls.Add(FormHijo);
-            panelChildForm.Tag = FormHijo;
-            FormHijo.BringToFront();
+            //panelChildForm.Tag = FormHijo;
+            //FormHijo.BringToFront();
             FormHijo.Show();
         }
-
+        #endregion
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
+        }
+        private void panelChildForm_Paint(object sender, PaintEventArgs e)
+        {
         }
     }
 }
