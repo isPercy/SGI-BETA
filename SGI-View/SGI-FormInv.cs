@@ -14,13 +14,11 @@ namespace SGI_View
     {
         public int uwu;
         Controllers.cbController ocbController = new Controllers.cbController();
-        //Controllers.FillInv.FillEquipo oFillEquipo = new Controllers.FillInv.FillEquipo();
-
         public FormInv()
         {
             InitializeComponent();
-
         }
+
         #region Cargar sin filtro
         private void FormInv_Load(object sender, EventArgs e)
         {
@@ -40,6 +38,7 @@ namespace SGI_View
                 //Settea los DROPDOWN con un texto de "Seleccionar" como predeterminado
             cb_Art.Text = ("Seleccionar");
             cb_Lab.Text = ("Seleccionar");
+
         }
         #endregion
 
@@ -87,30 +86,50 @@ namespace SGI_View
         }
         #endregion
 
-        //Acciones de botones
+        #region ------------ Acciones de botones ------------
         private void closewnd_Click(object sender, EventArgs e)
         {
-            this.Close(); //Cerrar Formulario Inventario
+            this.Close();/*Cerrar Formulario Inventario*/
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //                     No se usa                     //
+                /*                     No se usa                     */
         }
 
         private void Prestar_Click(object sender, EventArgs e)
         {
-            // Boton prestar equipo *genera un ticket del prestamo*
+                //  Boton prestar equipo *genera un ticket del prestamo*
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //  Crea la ventana para agregar Equipo
+                //  Crea la ventana para agregar Equipo
             var f = new SGI_AddItem
             {
                 MinimizeBox = false
             };
             f.ShowDialog();
         }
+
+        private void addArt_Click(object sender, EventArgs e)
+        {
+                //  Crea la ventana para agregar Lab
+            var f = new SGI_AddArt
+            {
+                MinimizeBox = false
+            };
+            f.ShowDialog();
+        }
+
+        private void addLab_Click(object sender, EventArgs e)
+        {
+            var f = new SGI_AddLab
+            {
+                MinimizeBox = false
+            };
+            f.ShowDialog();
+        }
+        #endregion
     }
 }

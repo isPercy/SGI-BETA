@@ -63,6 +63,18 @@
     <Compile Include="SGI-AddItem.Designer.cs">
       <DependentUpon>SGI-AddItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="SGI-AddArt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SGI-AddArt.Designer.cs">
+      <DependentUpon>SGI-AddArt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGI-AddLab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SGI-AddLab.Designer.cs">
+      <DependentUpon>SGI-AddLab.cs</DependentUpon>
+    </Compile>
     <Compile Include="SGI-FormInv.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +97,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="SGI-AddItem.resx">
       <DependentUpon>SGI-AddItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGI-AddArt.resx">
+      <DependentUpon>SGI-AddArt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGI-AddLab.resx">
+      <DependentUpon>SGI-AddLab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SGI-FormInv.resx">
       <DependentUpon>SGI-FormInv.cs</DependentUpon>

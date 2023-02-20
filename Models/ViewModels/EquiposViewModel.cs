@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Models.ViewModels
 {
-    public class ProductoViewModel
+    public class EquiposViewModel
     {
         public int ID_Equipo { get; set; }
         public string Num_Serie { get; set; }
