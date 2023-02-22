@@ -58,6 +58,9 @@
     <Compile Include="Controllers\AddEquipo.cs" />
     <Compile Include="Controllers\AddLab.cs" />
     <Compile Include="Controllers\cbController.cs" />
+    <Compile Include="Controllers\CreateTicket.cs" />
+    <Compile Include="Controllers\EditArt.cs" />
+    <Compile Include="Controllers\EditLab.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

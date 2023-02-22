@@ -75,6 +75,24 @@
     <Compile Include="SGI-AddLab.Designer.cs">
       <DependentUpon>SGI-AddLab.cs</DependentUpon>
     </Compile>
+    <Compile Include="SGI-CrearPrest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SGI-CrearPrest.Designer.cs">
+      <DependentUpon>SGI-CrearPrest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGI-EditArt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SGI-EditArt.Designer.cs">
+      <DependentUpon>SGI-EditArt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGI-EditLab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SGI-EditLab.Designer.cs">
+      <DependentUpon>SGI-EditLab.cs</DependentUpon>
+    </Compile>
     <Compile Include="SGI-FormInv.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +121,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SGI-AddLab.resx">
       <DependentUpon>SGI-AddLab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGI-CrearPrest.resx">
+      <DependentUpon>SGI-CrearPrest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGI-EditArt.resx">
+      <DependentUpon>SGI-EditArt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGI-EditLab.resx">
+      <DependentUpon>SGI-EditLab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SGI-FormInv.resx">
       <DependentUpon>SGI-FormInv.cs</DependentUpon>

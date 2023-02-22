@@ -52,7 +52,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 511);
             this.panel1.TabIndex = 2;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            //this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btn_Pres
             // 
@@ -138,8 +138,8 @@
         private System.Windows.Forms.Button btn_Pres;
         private System.Windows.Forms.Button btn_Inv;
         private System.Windows.Forms.Panel LogoUVM;
-        private System.Windows.Forms.Panel panelChildForm;
         private System.Windows.Forms.PictureBox UVMlogo;
+        private System.Windows.Forms.Panel panelChildForm;
     }
 }
 

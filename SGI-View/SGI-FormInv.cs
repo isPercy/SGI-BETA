@@ -37,8 +37,9 @@ namespace SGI_View
 
                 //Settea los DROPDOWN con un texto de "Seleccionar" como predeterminado
             cb_Art.Text = ("Seleccionar");
+            cb_Art.SelectedIndex = 0;
             cb_Lab.Text = ("Seleccionar");
-
+            cb_Lab.SelectedIndex = 0;
         }
         #endregion
 
@@ -54,6 +55,7 @@ namespace SGI_View
                 cb_Art.DataSource = ocbController.Art_por_Lab(ValueLab);
                 cb_Art.ValueMember = "ID_Articulo";
                 cb_Art.DisplayMember = "Nom_Articulo";
+                cb_Art.Text = ("Seleccionar");
 
                     //Cargar lista de equipos con lo seleccionado en el DROPDOWN "LAB"
                 dataGridView.DataSource = ocbController.EquiposGetList1(ValueLab);
@@ -73,12 +75,16 @@ namespace SGI_View
             {
                     //Captura el valor del "DROPDOWN ART"
                 int ValueArt = (int)cb_Art.SelectedValue;
-                
+                if (cb_Lab.SelectedIndex == 0)
+                {
                     //Imprime en el datagrid el listado de Equipos con la seleccion de dropdown de articulos
-                dataGridView.DataSource = ocbController.EquiposGetList2(ValueArt);
+                    dataGridView.DataSource = ocbController.EquiposGetList2(ValueArt);
+                }
+                else
+                {
                     //Imprime en el datagrid el listado de Equipos con la seleccion de dropdown de articulos y laboratorio
-                dataGridView.DataSource = ocbController.EquiposGetList3(ValueArt, uwu);
-                
+                    dataGridView.DataSource = ocbController.EquiposGetList3(ValueArt, uwu);
+                }
             }
             catch (InvalidCastException)
             {
@@ -92,19 +98,19 @@ namespace SGI_View
             this.Close();/*Cerrar Formulario Inventario*/
         }
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-                /*                     No se usa                     */
-        }
-
         private void Prestar_Click(object sender, EventArgs e)
         {
-                //  Boton prestar equipo *genera un ticket del prestamo*
+                //  Boton prestar equipo *Form para genera un ticket del prestamo*
+            var f = new SGI_CrearPrest
+            {
+                MinimizeBox = false
+            };
+            f.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-                //  Crea la ventana para agregar Equipo
+                //  Abre la ventana para agregar Equipo
             var f = new SGI_AddItem
             {
                 MinimizeBox = false
@@ -114,7 +120,7 @@ namespace SGI_View
 
         private void addArt_Click(object sender, EventArgs e)
         {
-                //  Crea la ventana para agregar Lab
+                //  Abre la ventana para agregar Lab
             var f = new SGI_AddArt
             {
                 MinimizeBox = false
@@ -130,6 +136,33 @@ namespace SGI_View
             };
             f.ShowDialog();
         }
+        
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var f = new SGI_EditLab
+            {
+                MinimizeBox = false
+            };
+            f.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var f = new SGI_EditArt
+            {
+                MinimizeBox = false
+            };
+            f.ShowDialog();
+        }
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+                //Vuelve a cargar los datos de los combobox y datagrid
+            FormInv_Load(sender, e);
+        }
+
         #endregion
+
+        
     }
 }

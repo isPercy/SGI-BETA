@@ -35,19 +35,9 @@ namespace SGI_View
             activeForm?.Close();
             activeForm = FormHijo;
             FormHijo.TopLevel = false;
-            //FormHijo.FormBorderStyle = FormBorderStyle.None;
-            //FormHijo.Dock = DockStyle.Fill;
             panelChildForm.Controls.Add(FormHijo);
-            //panelChildForm.Tag = FormHijo;
-            //FormHijo.BringToFront();
             FormHijo.Show();
         }
         #endregion
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-        }
-        private void panelChildForm_Paint(object sender, PaintEventArgs e)
-        {
-        }
     }
 }
