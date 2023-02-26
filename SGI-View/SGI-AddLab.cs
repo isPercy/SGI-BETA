@@ -33,9 +33,9 @@ namespace SGI_View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(CaptureLab))
+            if (string.IsNullOrEmpty(CaptureLab) /*|| CaptureLab.Contains(" ")*/)
             {
-                MessageBox.Show("El Nombre de LABORATORIO no es válido (no debe contener espacios, ni contener caracteres especiales)");
+                MessageBox.Show("El Nombre de LABORATORIO no es válido (no debe contener espacios");
             }
             else
             {

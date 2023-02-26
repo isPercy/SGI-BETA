@@ -23,8 +23,8 @@ namespace Models.BD
         public int ID_Prestamo { get; set; }
         public int EquipoUnicoID_Equipo { get; set; }
         public int UsuarioID_User { get; set; }
-        public string Date_Entrega { get; set; }
-        public string Date_Vencimiento { get; set; }
+        public System.DateTime Date_Entrega { get; set; }
+        public System.DateTime Date_Vencimiento { get; set; }
     
         public virtual EquipoUnico EquipoUnico { get; set; }
         public virtual Usuario Usuario { get; set; }

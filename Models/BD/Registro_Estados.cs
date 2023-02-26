@@ -17,7 +17,7 @@ namespace Models.BD
         public int ID_Reg_Est { get; set; }
         public int PrestamoID_Prestamo { get; set; }
         public int EstadosID_Estado { get; set; }
-        public string Date_Registro { get; set; }
+        public System.DateTime Date_Registro { get; set; }
     
         public virtual Prestamo Prestamo { get; set; }
         public virtual Estados Estados { get; set; }

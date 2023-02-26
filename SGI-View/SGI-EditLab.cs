@@ -58,6 +58,10 @@ namespace SGI_View
             {
                 MessageBox.Show("El Nombre de LABORATORIO no es válido (no debe contener espacios, ni contener caracteres especiales)");
             }
+            /*else if (NomLab.Contains(" "))
+            {
+                MessageBox.Show("No se permite espacios.");
+            }*/
             else
             {
                 MessageBox.Show("Guardado con éxito");

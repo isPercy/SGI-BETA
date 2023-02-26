@@ -12,7 +12,9 @@ namespace SGI_View
 {
     public partial class FormInv : Form
     {
-        public int uwu;
+        public string datagridSelected;
+        public int ValorDataGrid;
+        public int ValorLab;
         Controllers.cbController ocbController = new Controllers.cbController();
         public FormInv()
         {
@@ -34,12 +36,14 @@ namespace SGI_View
 
                 //EQUIPOS MOSTRADOS
             dataGridView.DataSource = ocbController.EquiposGetList();
-
+            
                 //Settea los DROPDOWN con un texto de "Seleccionar" como predeterminado
             cb_Art.Text = ("Seleccionar");
             cb_Art.SelectedIndex = 0;
             cb_Lab.Text = ("Seleccionar");
             cb_Lab.SelectedIndex = 0;
+
+            ValorDataGrid= 0;
         }
         #endregion
 
@@ -59,7 +63,7 @@ namespace SGI_View
 
                     //Cargar lista de equipos con lo seleccionado en el DROPDOWN "LAB"
                 dataGridView.DataSource = ocbController.EquiposGetList1(ValueLab);
-                uwu = ValueLab;
+                ValorLab = ValueLab;
             }
             catch (InvalidCastException)
             {
@@ -83,12 +87,21 @@ namespace SGI_View
                 else
                 {
                     //Imprime en el datagrid el listado de Equipos con la seleccion de dropdown de articulos y laboratorio
-                    dataGridView.DataSource = ocbController.EquiposGetList3(ValueArt, uwu);
+                    dataGridView.DataSource = ocbController.EquiposGetList3(ValueArt, ValorLab);
                 }
             }
             catch (InvalidCastException)
             {
             }
+        }
+        #endregion
+
+        #region DataGridView Selection
+            //Se guarda la seleccion del EQUIPO seleccionado en el datagridview
+        private void dataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            ValorDataGrid = (int)dataGridView.Rows[e.RowIndex].Cells[0].Value;
+            //MessageBox.Show("uwu : " + ValorDataGrid);
         }
         #endregion
 
@@ -154,6 +167,7 @@ namespace SGI_View
                 MinimizeBox = false
             };
             f.ShowDialog();
+            MessageBox.Show("uwu:  " + datagridSelected);
         }
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -161,8 +175,13 @@ namespace SGI_View
             FormInv_Load(sender, e);
         }
 
+
         #endregion
 
-        
+            //Evento seleccion celda datagrid
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            datagridSelected = dataGridView.Rows[1].Cells[2].Value.ToString();
+        }
     }
 }

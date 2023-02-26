@@ -76,8 +76,8 @@
     <Property Name="ID_Prestamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EquipoUnicoID_Equipo" Type="int" Nullable="false" />
     <Property Name="UsuarioID_User" Type="int" Nullable="false" />
-    <Property Name="Date_Entrega" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Date_Vencimiento" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date_Entrega" Type="datetime" Nullable="false" />
+    <Property Name="Date_Vencimiento" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Usuario">
     <Key>
@@ -104,7 +104,7 @@
     <Property Name="ID_Reg_Est" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PrestamoID_Prestamo" Type="int" Nullable="false" />
     <Property Name="EstadosID_Estado" Type="int" Nullable="false" />
-    <Property Name="Date_Registro" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date_Registro" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Estados">
     <Key>
@@ -279,8 +279,8 @@
           <Property Name="EquipoUnicoID_Equipo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Usuario" Relationship="Model_BD.UsuarioPrestamo" FromRole="Prestamo" ToRole="Usuario" />
           <Property Name="UsuarioID_User" Type="Int32" Nullable="false" />
-          <Property Name="Date_Entrega" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Date_Vencimiento" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Date_Entrega" Type="DateTime" Nullable="false" />
+          <Property Name="Date_Vencimiento" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Registro_Estados" Relationship="Model_BD.PrestamoRegistro_Estados" FromRole="Prestamo" ToRole="Registro_Estados" />
         </EntityType>
         <EntityType Name="Usuario">
@@ -373,7 +373,7 @@
           <Property Name="PrestamoID_Prestamo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Estados" Relationship="Model_BD.EstadosRegistro_Estados" FromRole="Registro_Estados" ToRole="Estados" />
           <Property Name="EstadosID_Estado" Type="Int32" Nullable="false" />
-          <Property Name="Date_Registro" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Date_Registro" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="PrestamoRegistro_Estados">
           <End Type="Model_BD.Prestamo" Role="Prestamo" Multiplicity="1" />

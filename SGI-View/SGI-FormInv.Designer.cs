@@ -31,6 +31,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.closewnd = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.ID_Equipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Num_Serie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo_ArticuloID_Articulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Inventario_LabID_Lab = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prestar = new System.Windows.Forms.Button();
             this.btnAddEq = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,11 +49,6 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.ID_Equipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Num_Serie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipo_ArticuloID_Articulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Inventario_LabID_Lab = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,6 +93,43 @@
             this.dataGridView.RowHeadersVisible = false;
             this.dataGridView.Size = new System.Drawing.Size(724, 343);
             this.dataGridView.TabIndex = 26;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
+            this.dataGridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_RowEnter);
+            // 
+            // ID_Equipo
+            // 
+            this.ID_Equipo.DataPropertyName = "ID_Equipo";
+            this.ID_Equipo.HeaderText = "#";
+            this.ID_Equipo.Name = "ID_Equipo";
+            this.ID_Equipo.ReadOnly = true;
+            // 
+            // Num_Serie
+            // 
+            this.Num_Serie.DataPropertyName = "Num_Serie";
+            this.Num_Serie.HeaderText = "N° Serie";
+            this.Num_Serie.Name = "Num_Serie";
+            this.Num_Serie.ReadOnly = true;
+            // 
+            // Activo
+            // 
+            this.Activo.DataPropertyName = "Activo";
+            this.Activo.HeaderText = "En bodega";
+            this.Activo.Name = "Activo";
+            this.Activo.ReadOnly = true;
+            // 
+            // Tipo_ArticuloID_Articulo
+            // 
+            this.Tipo_ArticuloID_Articulo.DataPropertyName = "Tipo_ArticuloID_Articulo";
+            this.Tipo_ArticuloID_Articulo.HeaderText = "ID de tipo de articulo";
+            this.Tipo_ArticuloID_Articulo.Name = "Tipo_ArticuloID_Articulo";
+            this.Tipo_ArticuloID_Articulo.ReadOnly = true;
+            // 
+            // Inventario_LabID_Lab
+            // 
+            this.Inventario_LabID_Lab.DataPropertyName = "Inventario_LabID_Lab";
+            this.Inventario_LabID_Lab.HeaderText = "ID de laboratorio";
+            this.Inventario_LabID_Lab.Name = "Inventario_LabID_Lab";
+            this.Inventario_LabID_Lab.ReadOnly = true;
             // 
             // Prestar
             // 
@@ -221,36 +258,6 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Actualizar tabla";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // ID_Equipo
-            // 
-            this.ID_Equipo.DataPropertyName = "ID_Equipo";
-            this.ID_Equipo.HeaderText = "#";
-            this.ID_Equipo.Name = "ID_Equipo";
-            // 
-            // Num_Serie
-            // 
-            this.Num_Serie.DataPropertyName = "Num_Serie";
-            this.Num_Serie.HeaderText = "N° Serie";
-            this.Num_Serie.Name = "Num_Serie";
-            // 
-            // Activo
-            // 
-            this.Activo.DataPropertyName = "Activo";
-            this.Activo.HeaderText = "En bodega";
-            this.Activo.Name = "Activo";
-            // 
-            // Tipo_ArticuloID_Articulo
-            // 
-            this.Tipo_ArticuloID_Articulo.DataPropertyName = "Tipo_ArticuloID_Articulo";
-            this.Tipo_ArticuloID_Articulo.HeaderText = "ID de tipo de articulo";
-            this.Tipo_ArticuloID_Articulo.Name = "Tipo_ArticuloID_Articulo";
-            // 
-            // Inventario_LabID_Lab
-            // 
-            this.Inventario_LabID_Lab.DataPropertyName = "Inventario_LabID_Lab";
-            this.Inventario_LabID_Lab.HeaderText = "ID de laboratorio";
-            this.Inventario_LabID_Lab.Name = "Inventario_LabID_Lab";
             // 
             // FormInv
             // 

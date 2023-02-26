@@ -40,6 +40,8 @@
             this.TxtNom = new System.Windows.Forms.TextBox();
             this.TxtRut = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.LblLab = new System.Windows.Forms.Label();
+            this.LblArt = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -161,10 +163,14 @@
             this.TxtRut.Name = "TxtRut";
             this.TxtRut.Size = new System.Drawing.Size(203, 20);
             this.TxtRut.TabIndex = 0;
+            //this.TxtRut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRut_KeyDown);
+            //this.TxtRut.Leave += new System.EventHandler(this.TxtRut_Leave);
             // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.LblLab);
+            this.groupBox2.Controls.Add(this.LblArt);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
@@ -177,6 +183,24 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos del prestamo";
+            // 
+            // LblLab
+            // 
+            this.LblLab.AutoSize = true;
+            this.LblLab.Location = new System.Drawing.Point(200, 81);
+            this.LblLab.Name = "LblLab";
+            this.LblLab.Size = new System.Drawing.Size(10, 13);
+            this.LblLab.TabIndex = 10;
+            this.LblLab.Text = "-";
+            // 
+            // LblArt
+            // 
+            this.LblArt.AutoSize = true;
+            this.LblArt.Location = new System.Drawing.Point(101, 81);
+            this.LblArt.Name = "LblArt";
+            this.LblArt.Size = new System.Drawing.Size(10, 13);
+            this.LblArt.TabIndex = 9;
+            this.LblArt.Text = "-";
             // 
             // label8
             // 
@@ -217,18 +241,22 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker2.Location = new System.Drawing.Point(102, 216);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker2.TabIndex = 1;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(102, 136);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 0;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // SGI_CrearPrest
             // 
@@ -270,5 +298,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label LblLab;
+        private System.Windows.Forms.Label LblArt;
     }
 }

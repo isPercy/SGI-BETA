@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SGI_View
 {
@@ -59,7 +60,11 @@ namespace SGI_View
                 //revisa si el campo esta vacio o no para guardar cambios
             if (string.IsNullOrEmpty(NomArt))
             {
-                MessageBox.Show("El Nombre de LABORATORIO no es válido (no debe contener espacios, ni contener caracteres especiales)");
+                MessageBox.Show("El Nombre de ARTICULO no es válido (no debe contener espacios, ni contener caracteres especiales)");
+            }
+            else if (NomArt.Contains(" "))
+            {
+                MessageBox.Show("No se permite espacios.");
             }
             else
             {

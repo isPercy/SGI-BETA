@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/11/2023 21:47:25
--- Generated from EDMX file: D:\CPI Project\SGI-View\Models\BD\Model_BD.edmx
+-- Date Created: 02/22/2023 22:40:51
+-- Generated from EDMX file: C:\Users\jpgod\OneDrive\Escritorio\SGI-View\Models\BD\Model_BD.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [SGI_DB];
+USE [BD_CPI];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -103,8 +103,8 @@ CREATE TABLE [dbo].[Prestamo] (
     [ID_Prestamo] int IDENTITY(1,1) NOT NULL,
     [EquipoUnicoID_Equipo] int  NOT NULL,
     [UsuarioID_User] int  NOT NULL,
-    [Date_Entrega] nvarchar(max)  NOT NULL,
-    [Date_Vencimiento] nvarchar(max)  NOT NULL
+    [Date_Entrega] datetime  NOT NULL,
+    [Date_Vencimiento] datetime  NOT NULL
 );
 GO
 
@@ -131,7 +131,7 @@ CREATE TABLE [dbo].[Registro_EstadosSet] (
     [ID_Reg_Est] int IDENTITY(1,1) NOT NULL,
     [PrestamoID_Prestamo] int  NOT NULL,
     [EstadosID_Estado] int  NOT NULL,
-    [Date_Registro] nvarchar(max)  NOT NULL
+    [Date_Registro] datetime  NOT NULL
 );
 GO
 
