@@ -21,7 +21,7 @@ namespace SGI_View
 
         public DateTime FechaInicio;
         public DateTime FechaFin;
-        string ValueRut = "";
+        string ValueRut;
         string eq;
 
         public SGI_CrearPrest()
@@ -32,20 +32,20 @@ namespace SGI_View
         private void SGI_CrearPrest_Load(object sender, EventArgs e)
         {
             eq = textBox6.Text;
-            CompletarEquipo(); //Por ahora es null "eq"
-            AutoCompletar();    //se llama a la funcion de sugerir autocompletado
+            CompletarEquipo();
+            AutoCompletar();    //se llama a la funcion de sugerir autocompletado RUT
             dateTimePicker2.Value = DateTime.Now.AddDays(7);
         }
 
-        // ---- Captura datos de datetime del prestamo ----
-        //Pasa el valor de la fecha inicio
+            // ---- Captura datos de datetime del prestamo ----
+            //Pasa el valor de la fecha inicio
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             FechaInicio = dateTimePicker1.Value;
         }
 
-        // ---- Captura datos de datetime del prestamo ----
-        //Pasa el valor de la fecha vencimiento y niega una fecha de vencimiento menor a la de inicio
+            // ---- Captura datos de datetime del prestamo ----
+            //Pasa el valor de la fecha vencimiento y niega una fecha de vencimiento menor a la de inicio
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             if (dateTimePicker2.Value >= dateTimePicker1.Value)
@@ -64,15 +64,14 @@ namespace SGI_View
 
 
 
-        // ----  Sugerir relleno de datos por el RUT ----
-        //Objeto para la tabla de datos a almacenar
+            // ----  Sugerir relleno de datos por el RUT ----
+            //Objeto para la tabla de datos a almacenar
         DataTable dt = new DataTable();
         private void AutoCompletar()
         {
-            db.OpenConexion();
             //Recorrer usuarios para sugerir en el TextBox
             AutoCompleteStringCollection lst = new AutoCompleteStringCollection();
-            SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM Usuario", db.StringDeConexion()); /*<--- Crear objeto para adaptardor indicando en nombre de la conexion*/
+            SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM Usuario", db.uwu()); /*<--- Crear objeto para adaptardor indicando en nombre de la conexion*/
 
             adaptador.Fill(dt); //Rellenar contenedor de sugerencia
 
@@ -81,7 +80,6 @@ namespace SGI_View
                 lst.Add(dt.Rows[i]["RUT"].ToString());
             }
             TxtRut.AutoCompleteCustomSource = lst;
-            db.ClouseConexion();
         }
 
         private void TxtRut_TextChanged(object sender, EventArgs e)
@@ -89,26 +87,28 @@ namespace SGI_View
             ValueRut = TxtRut.Text;
         }
 
-        // Acciona el relleno de informacion en los TXTBOX
+            // Acciona el relleno de informacion en los TXTBOX
         private void TxtRut_Leave(object sender, EventArgs e)
         {
-            //CompletarCampos();
+            ValueRut = TxtRut.Text;
+            CompletarUsuario();
         }
         private void TxtRut_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                CompletarCampos();
+                ValueRut = TxtRut.Text;
+                CompletarUsuario();
             }
             else
             {
             }
         }
-        // Termina accion de relleno de info en los TXTBOX
+            // Termina accion de relleno de info en los TXTBOX
 
 
-        // completando campos de los txtbox con el objeto USUARIO
-        public void CompletarCampos()
+            // completando campos de los txtbox con el objeto USUARIO
+        public void CompletarUsuario()
         {
             try
             {
@@ -116,18 +116,19 @@ namespace SGI_View
                 foreach (var usuario in LstUsuario)
                 {
                     var user = LstUsuario.Find(u => u.RUT == ValueRut);
-                    TxtNom.Text = user.Nom_Usuario;
-                    TxtCorreo.Text = user.Correo;
-                    TxtCelular.Text = user.Celular;
-                    TxtCarrera.Text = Convert.ToString(usuario.Carrera_UsuarioID_Carrera);
+                    TxtNom.Text = user.Nom_Usuario.ToString();
+                    TxtCorreo.Text = user.Correo.ToString();
+                    TxtCelular.Text = user.Celular.ToString();
+                    TxtCarrera.Text = Convert.ToString(user.Carrera_UsuarioID_Carrera);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show("No se pudo llevar a cabo el completar de los campos por lo siguiente: " + ex);
             }
         }
 
-        // completando campos de los txtbox con el objeto Equipo
+            // completando campos de los txtbox con el objeto Equipo
         public void CompletarEquipo()
         {
             try

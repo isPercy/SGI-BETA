@@ -53,15 +53,16 @@ namespace SGI_View
             //Mostrar equipos filtrando solo por Lab
             try
             {
-                //Captura el valor del "DROPDOWN de LAB"
+                    //  Captura el valor del "DROPDOWN de LAB"
                 int ValueLab = (int)cb_Lab.SelectedValue;
-                //crea una lista de ARTICULOS segun lo seleccionado en "DROPDOWN LAB"
+
+                    //  crea una lista de ARTICULOS segun lo seleccionado en "DROPDOWN LAB"
                 cb_Art.DataSource = ocbController.Art_por_Lab(ValueLab);
                 cb_Art.ValueMember = "ID_Articulo";
                 cb_Art.DisplayMember = "Nom_Articulo";
                 cb_Art.Text = ("Seleccionar");
 
-                //Cargar lista de equipos con lo seleccionado en el DROPDOWN "LAB"
+                    //  Cargar lista de equipos con lo seleccionado en el DROPDOWN "LAB"
                 dataGridView.DataSource = ocbController.EquiposGetList1(ValueLab);
                 ValorLab = ValueLab;
             }
@@ -113,7 +114,7 @@ namespace SGI_View
 
         private void Prestar_Click(object sender, EventArgs e)
         {
-            //  Boton prestar equipo *Form para genera un ticket del prestamo*
+                //  Boton prestar equipo *Form para genera un ticket del prestamo*
             if (String.IsNullOrEmpty(ValorGridSelected))
             {
                 MessageBox.Show("Seleccione una fila de la tabla equipos para generar prestamo");
@@ -179,7 +180,7 @@ namespace SGI_View
         }
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //Vuelve a cargar los datos de los combobox y datagrid
+                //  Vuelve a cargar los datos de los combobox y datagrid
             FormInv_Load(sender, e);
         }
         #endregion
@@ -188,11 +189,10 @@ namespace SGI_View
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
             try
             {
                 ValorGridSelected = dataGridView.SelectedRows[0].Cells[1].Value.ToString();
-                MessageBox.Show("Equipo seleccionado: " + ValorGridSelected);
+                MessageBox.Show("Equipo seleccionado: "+ValorGridSelected);
             }
             catch(Exception ex)
             {

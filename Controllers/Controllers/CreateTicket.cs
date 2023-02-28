@@ -14,39 +14,52 @@ using System.Runtime.Remoting.Messaging;
 namespace Controllers
 {
     public class CreateTicket
-    {   
-        static string ConnectionString = "server=DESKTOP-807DCL7 ; database=BD_CPI ; integrated security=true";
-        SqlConnection connection = new SqlConnection(ConnectionString);
-        string uwu;
+    {
+        SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder() 
+        {
+            DataSource = "DESKTOP-807DCL7",
+            InitialCatalog = "BD_CPI",
+            IntegratedSecurity = true,
+            ApplicationName = "SGI"
+        };
+        private string ConnectionString = "Data Source = DESKTOP-807DCL7; Initial Catalog = BD_CPI; Integrated Security = True";
+        //SqlConnection connection = new SqlConnection("Data Source = DESKTOP-807DCL7; Initial Catalog = BD_CPI; Integrated Security = True");
 
-        public string StringDeConexion()
+        public string uwu() 
         {
-            string sc = ConnectionString;
-            return sc;
-        }
-        public string OpenConexion()
-        {
-            try
-            {
-                connection.Open();
-            }
-            catch (Exception ex)
-            {
-                uwu = ("No se pudo establecer conexión: "+ex.Message);
-            }
-            return uwu;
+            return builder.ToString();
         }
 
-        public void ClouseConexion() 
-        {
-            connection.Close();
-        }
+        #region Conexion
+        //public string StringDeConexion()
+        //{
+        //    string sc = "Data Source=DESKTOP-807DCL7;Initial Catalog=BD_CPI;Integrated Security=True;"/*ConnectionString*/;
+        //    return sc;
+        //}
+        //public void OpenConexion()
+        //{
+        //    try
+        //    {
+        //        using (connection) { connection.Open(); }
+                    
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        uwu = ("No se pudo establecer conexión: " + ex.Message);
+        //    }
+        //}
+
+        //public void CloseConexion() 
+        //{
+        //    using (connection) { connection.Close(); }
+        //}
+        #endregion
 
         //Almacenar datos en objeto de tipo EQUIPO
         public List<EquiposViewModel> ObtenerEquipo()
         {
             List<EquiposViewModel> LstEquipo = new List<EquiposViewModel>();
-            using (connection)
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand("Select * from EquipoUnico", connection);
                 connection.Open();
@@ -64,6 +77,7 @@ namespace Controllers
                 }
                 reader.Close();
                 connection.Close();
+                //connection.Close();
             }
 
             return LstEquipo;
@@ -73,11 +87,11 @@ namespace Controllers
         public List<UsuarioViewModel> ObtenerUsuario()
         {         
             List<UsuarioViewModel> LstUsuario = new List<UsuarioViewModel>();
-            using (connection)
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand("Select * from Usuario", connection);
                 connection.Open();
-                SqlDataReader reader= cmd.ExecuteReader();
+                SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -89,12 +103,12 @@ namespace Controllers
                     Usuario.Celular = Convert.ToString(reader["Celular"]);
                     Usuario.Correo = Convert.ToString(reader["Correo"]);
                     Usuario.Carrera_UsuarioID_Carrera = Convert.ToInt32(reader["Carrera_UsuarioID_Carrera"]);
+
                     LstUsuario.Add(Usuario);
                 }
                 reader.Close();
                 connection.Close();
             }
-
             return LstUsuario;
         }
     }
