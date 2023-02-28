@@ -7,51 +7,95 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
+using System.Windows;
+using System.Data.Entity;
+using System.Runtime.Remoting.Messaging;
 
 namespace Controllers
 {
     public class CreateTicket
-    {
-        public void LlenarPorRut(int Rut)
+    {   
+        static string ConnectionString = "server=DESKTOP-807DCL7 ; database=BD_CPI ; integrated security=true";
+        SqlConnection connection = new SqlConnection(ConnectionString);
+        string uwu;
+
+        public string StringDeConexion()
         {
-            using(Model_BDContainer db = new Model_BDContainer())
-            {
-
-            }
+            string sc = ConnectionString;
+            return sc;
         }
-        //Aun NO esta en uso
-        #region Aqui se cambia el estado del equipo al pasar el prestamo a devuelto
-        public void CambiarEstado(int ID_Pres)
+        public string OpenConexion()
         {
-            using (Model_BDContainer db = new Model_BDContainer())
+            try
             {
-                    //Inventario_Lab nObj = db.Inventario_Lab.Where(d => d.Nom_Lab == NomLab)First();
-                EquipoUnico nObj = db.EquipoUnico.Find(ID_Pres);
-                if (nObj.Activo == true)
-                {
-                        //hay que modificarlo para cuando el estado de prestamo cambie a entregado Activo pase a true
-                    nObj.Activo = false;
-                }
-                else 
-                { 
-                    nObj.Activo = true;
-                }
-
-                    //  Se graba la informacion
-                    //  Importante que tenga esta dos lineas de codigo
-                db.Entry(nObj).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-
-                    //  Se despliega en consola (no se usa ya que trabajamos atravez de interfaz de windows)
-                var lst = db.EquipoUnico;
-                foreach (var nObj_ in lst)
-                {
-                    Console.WriteLine("ok");
-                }
+                connection.Open();
             }
+            catch (Exception ex)
+            {
+                uwu = ("No se pudo establecer conexión: "+ex.Message);
+            }
+            return uwu;
         }
-        #endregion
 
+        public void ClouseConexion() 
+        {
+            connection.Close();
+        }
+
+        //Almacenar datos en objeto de tipo EQUIPO
+        public List<EquiposViewModel> ObtenerEquipo()
+        {
+            List<EquiposViewModel> LstEquipo = new List<EquiposViewModel>();
+            using (connection)
+            {
+                SqlCommand cmd = new SqlCommand("Select * from EquipoUnico", connection);
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    EquiposViewModel Equipo = new EquiposViewModel();
+
+                    Equipo.Num_Serie = Convert.ToString(reader["Num_Serie"]);
+                    Equipo.Inventario_LabID_Lab = Convert.ToInt32(reader["Inventario_LabID_Lab"]);
+                    Equipo.Tipo_ArticuloID_Articulo = Convert.ToInt32(reader["Tipo_ArticuloID_Articulo"]);
+
+                    LstEquipo.Add(Equipo);
+                }
+                reader.Close();
+                connection.Close();
+            }
+
+            return LstEquipo;
+        }
+
+            //Almacenar datos en objeto de tipo USUARIO
+        public List<UsuarioViewModel> ObtenerUsuario()
+        {         
+            List<UsuarioViewModel> LstUsuario = new List<UsuarioViewModel>();
+            using (connection)
+            {
+                SqlCommand cmd = new SqlCommand("Select * from Usuario", connection);
+                connection.Open();
+                SqlDataReader reader= cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    UsuarioViewModel Usuario = new UsuarioViewModel();
+
+                    Usuario.ID_User = Convert.ToInt32(reader["ID_User"]);
+                    Usuario.RUT = Convert.ToString(reader["RUT"]);
+                    Usuario.Nom_Usuario = Convert.ToString(reader["Nom_Usuario"]);
+                    Usuario.Celular = Convert.ToString(reader["Celular"]);
+                    Usuario.Correo = Convert.ToString(reader["Correo"]);
+                    Usuario.Carrera_UsuarioID_Carrera = Convert.ToInt32(reader["Carrera_UsuarioID_Carrera"]);
+                    LstUsuario.Add(Usuario);
+                }
+                reader.Close();
+                connection.Close();
+            }
+
+            return LstUsuario;
+        }
     }
 }

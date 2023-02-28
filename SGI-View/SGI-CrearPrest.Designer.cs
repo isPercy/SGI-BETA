@@ -48,6 +48,8 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -163,8 +165,9 @@
             this.TxtRut.Name = "TxtRut";
             this.TxtRut.Size = new System.Drawing.Size(203, 20);
             this.TxtRut.TabIndex = 0;
-            //this.TxtRut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRut_KeyDown);
-            //this.TxtRut.Leave += new System.EventHandler(this.TxtRut_Leave);
+            this.TxtRut.TextChanged += new System.EventHandler(this.TxtRut_TextChanged);
+            this.TxtRut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRut_KeyDown);
+            this.TxtRut.Leave += new System.EventHandler(this.TxtRut_Leave);
             // 
             // groupBox2
             // 
@@ -232,6 +235,7 @@
             // textBox6
             // 
             this.textBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBox6.Enabled = false;
             this.textBox6.Location = new System.Drawing.Point(99, 56);
             this.textBox6.Margin = new System.Windows.Forms.Padding(30);
             this.textBox6.Name = "textBox6";
@@ -258,15 +262,36 @@
             this.dateTimePicker1.TabIndex = 0;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(310, 455);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Agregar usuario";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(649, 455);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(153, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Generar ticket de prestamo";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // SGI_CrearPrest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 461);
+            this.ClientSize = new System.Drawing.Size(814, 486);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.MaximumSize = new System.Drawing.Size(830, 500);
-            this.MinimumSize = new System.Drawing.Size(830, 500);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(830, 525);
+            this.MinimumSize = new System.Drawing.Size(830, 525);
             this.Name = "SGI_CrearPrest";
             this.Text = "SGI_CrearPrest";
             this.Load += new System.EventHandler(this.SGI_CrearPrest_Load);
@@ -289,7 +314,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox TxtCarrera;
         private System.Windows.Forms.TextBox TxtCelular;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -300,5 +324,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label LblLab;
         private System.Windows.Forms.Label LblArt;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.TextBox textBox6;
     }
 }

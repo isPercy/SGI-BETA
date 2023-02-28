@@ -91,9 +91,10 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersVisible = false;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(724, 343);
             this.dataGridView.TabIndex = 26;
-            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
+            this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
             this.dataGridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_RowEnter);
             // 
             // ID_Equipo
@@ -173,6 +174,7 @@
             // 
             // cb_Art
             // 
+            this.cb_Art.AccessibleName = "";
             this.cb_Art.FormattingEnabled = true;
             this.cb_Art.Location = new System.Drawing.Point(12, 38);
             this.cb_Art.Name = "cb_Art";

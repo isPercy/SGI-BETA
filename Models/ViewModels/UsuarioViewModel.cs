@@ -8,7 +8,7 @@ namespace Models.ViewModels
 {
     public class UsuarioViewModel
     {
-        //public int ID_User { get; set; }
+        public int ID_User { get; set; }
         public string RUT { get; set; }
         public string Nom_Usuario { get; set; }
         public string Correo { get; set; }
