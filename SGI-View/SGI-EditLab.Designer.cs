@@ -98,6 +98,7 @@
             this.MaximumSize = new System.Drawing.Size(500, 330);
             this.MinimumSize = new System.Drawing.Size(356, 243);
             this.Name = "SGI_EditLab";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SGI_EditLab";
             this.Load += new System.EventHandler(this.SGI_EditLab_Load);
             this.ResumeLayout(false);

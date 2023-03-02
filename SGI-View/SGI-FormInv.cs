@@ -15,6 +15,7 @@ namespace SGI_View
         public string datagridSelected;
         public int ValorDataGrid;
         public int ValorLab;
+
         Controllers.cbController ocbController = new Controllers.cbController();
         public FormInv()
         {
@@ -176,7 +177,6 @@ namespace SGI_View
                 MinimizeBox = false
             };
             f.ShowDialog();
-            MessageBox.Show("uwu:  " + datagridSelected);
         }
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

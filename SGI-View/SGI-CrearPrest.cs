@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SGI_View
 {
@@ -35,6 +36,7 @@ namespace SGI_View
             CompletarEquipo();
             AutoCompletar();    //se llama a la funcion de sugerir autocompletado RUT
             dateTimePicker2.Value = DateTime.Now.AddDays(7);
+            dateTimePicker1.Value = DateTime.Now;
         }
 
             // ---- Captura datos de datetime del prestamo ----
@@ -73,7 +75,7 @@ namespace SGI_View
             AutoCompleteStringCollection lst = new AutoCompleteStringCollection();
             SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM Usuario", db.uwu()); /*<--- Crear objeto para adaptardor indicando en nombre de la conexion*/
 
-            adaptador.Fill(dt); //Rellenar contenedor de sugerencia
+            adaptador.Fill(dt); //Rellenar adaptador de sugerencia
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -87,21 +89,70 @@ namespace SGI_View
             ValueRut = TxtRut.Text;
         }
 
-            // Acciona el relleno de informacion en los TXTBOX
+        // Acciona el relleno de informacion en los TXTBOX
         private void TxtRut_Leave(object sender, EventArgs e)
         {
             ValueRut = TxtRut.Text;
-            CompletarUsuario();
+            if (string.IsNullOrEmpty(TxtRut.Text))
+            { 
+            }
+            else
+            {
+
+                if (db.ExisteRut(ValueRut) == false)
+                {
+                    CompletarUsuario();
+                    TxtNom.Enabled = false;
+                    TxtCelular.Enabled = false;
+                    TxtCorreo.Enabled = false;
+                    TxtCarrera.Enabled = false;
+                }
+                else
+                {
+                    TxtNom.Text = "";
+                    TxtCelular.Text = "";
+                    TxtCorreo.Text = "";
+                    TxtCarrera.Text = "";
+
+                    TxtNom.Enabled = true;
+                    TxtCelular.Enabled = true;
+                    TxtCorreo.Enabled = true;
+                    TxtCarrera.Enabled = true;
+                }
+            }
         }
         private void TxtRut_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 ValueRut = TxtRut.Text;
-                CompletarUsuario();
-            }
-            else
-            {
+                if (string.IsNullOrEmpty(TxtRut.Text))
+                { 
+                }
+                else
+                {
+
+                    if (db.ExisteRut(ValueRut) == false)
+                    {
+                        CompletarUsuario();
+                        TxtNom.Enabled = false;
+                        TxtCelular.Enabled = false;
+                        TxtCorreo.Enabled = false;
+                        TxtCarrera.Enabled = false;
+                    }
+                    else
+                    {
+                        TxtNom.Text = "";
+                        TxtCelular.Text = "";
+                        TxtCorreo.Text = "";
+                        TxtCarrera.Text = "";
+
+                        TxtNom.Enabled = true;
+                        TxtCelular.Enabled = true;
+                        TxtCorreo.Enabled = true;
+                        TxtCarrera.Enabled = true;
+                    }
+                }
             }
         }
             // Termina accion de relleno de info en los TXTBOX
@@ -137,13 +188,30 @@ namespace SGI_View
                 foreach (var Equipo in LstEquipo)
                 {
                     var equipo = LstEquipo.Find(u => u.Num_Serie == eq);
-                    LblArt.Text = ("Articulu: " + Convert.ToString(equipo.Tipo_ArticuloID_Articulo));
+                    LblArt.Text = ("Articulo: " + Convert.ToString(equipo.Tipo_ArticuloID_Articulo));
                     LblLab.Text = ("Laboratiorio: " + Convert.ToString(equipo.Inventario_LabID_Lab));
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("No se pudo rellenar datos de equipo por lo siguientes motivos: " + ex);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {   
+            string dtEquipo = textBox6.Text;
+            string dtRut = TxtRut.Text;
+            DateTime fstar = FechaInicio;
+            DateTime fend = FechaFin;
+            try { 
+                db.GuardarPrestamo(dtEquipo, dtRut, fstar, fend);
+                MessageBox.Show("Guardado con éxito");
+                Close();
+            }
+            catch(Exception ex) 
+            {  
+                MessageBox.Show("No se pudo completar la operacion por lo siguiente: " + ex);
             }
         }
     }

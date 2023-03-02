@@ -29,13 +29,6 @@ namespace Controllers
                     //  Importante que tenga esta dos lineas de codigo
                 db.Tipo_Articulo.Add(nObj);
                 db.SaveChanges();
-
-                    //  Se despliega en consola (no se usa ya que trabajamos atravez de interfaz de windows)
-                var lst = db.EquipoUnico;
-                foreach (var nObj_ in lst)
-                {
-                    Console.WriteLine("ok");
-                }
             }
         }
     }

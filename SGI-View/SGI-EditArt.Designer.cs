@@ -96,6 +96,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNomArt);
             this.Name = "SGI_EditArt";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SGI_EditArt";
             this.Load += new System.EventHandler(this.SGI_EditArt_Load);
             this.ResumeLayout(false);

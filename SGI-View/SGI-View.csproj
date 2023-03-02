@@ -93,6 +93,12 @@
     <Compile Include="SGI-EditLab.Designer.cs">
       <DependentUpon>SGI-EditLab.cs</DependentUpon>
     </Compile>
+    <Compile Include="SGI-EstadosPres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SGI-EstadosPres.Designer.cs">
+      <DependentUpon>SGI-EstadosPres.cs</DependentUpon>
+    </Compile>
     <Compile Include="SGI-FormInv.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SGI-EditLab.resx">
       <DependentUpon>SGI-EditLab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGI-EstadosPres.resx">
+      <DependentUpon>SGI-EstadosPres.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SGI-FormInv.resx">
       <DependentUpon>SGI-FormInv.cs</DependentUpon>

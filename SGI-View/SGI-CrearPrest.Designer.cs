@@ -245,7 +245,6 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker2.Location = new System.Drawing.Point(102, 216);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
@@ -255,7 +254,6 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(102, 136);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
@@ -279,6 +277,7 @@
             this.button2.TabIndex = 11;
             this.button2.Text = "Generar ticket de prestamo";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // SGI_CrearPrest
             // 
@@ -293,6 +292,7 @@
             this.MaximumSize = new System.Drawing.Size(830, 525);
             this.MinimumSize = new System.Drawing.Size(830, 525);
             this.Name = "SGI_CrearPrest";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SGI_CrearPrest";
             this.Load += new System.EventHandler(this.SGI_CrearPrest_Load);
             this.groupBox1.ResumeLayout(false);

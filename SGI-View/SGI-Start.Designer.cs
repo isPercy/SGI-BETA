@@ -52,7 +52,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 511);
             this.panel1.TabIndex = 2;
-            //this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btn_Pres
             // 
@@ -65,7 +64,7 @@
             this.btn_Pres.Name = "btn_Pres";
             this.btn_Pres.Size = new System.Drawing.Size(200, 80);
             this.btn_Pres.TabIndex = 2;
-            this.btn_Pres.Text = "Ver préstamos";
+            this.btn_Pres.Text = "Ver prestamos";
             this.btn_Pres.UseVisualStyleBackColor = true;
             this.btn_Pres.Click += new System.EventHandler(this.btn_Pres_Click);
             // 
@@ -108,7 +107,10 @@
             // 
             // panelChildForm
             // 
-            this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelChildForm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelChildForm.AutoSize = true;
             this.panelChildForm.Location = new System.Drawing.Point(200, 0);
             this.panelChildForm.Name = "panelChildForm";
             this.panelChildForm.Size = new System.Drawing.Size(744, 511);
@@ -124,12 +126,14 @@
             this.Controls.Add(this.panel1);
             this.MinimumSize = new System.Drawing.Size(960, 550);
             this.Name = "Frame1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gestión de Inventario - Escuela de ingeniería y negocio UVM";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.LogoUVM.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.UVMlogo)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

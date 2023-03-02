@@ -23,7 +23,7 @@ namespace Controllers
             ApplicationName = "SGI"
         };
         private string ConnectionString = "Data Source = DESKTOP-807DCL7; Initial Catalog = BD_CPI; Integrated Security = True";
-        //SqlConnection connection = new SqlConnection("Data Source = DESKTOP-807DCL7; Initial Catalog = BD_CPI; Integrated Security = True");
+            //SqlConnection connection = new SqlConnection("Data Source = DESKTOP-807DCL7; Initial Catalog = BD_CPI; Integrated Security = True");
 
         public string uwu() 
         {
@@ -55,7 +55,7 @@ namespace Controllers
         //}
         #endregion
 
-        //Almacenar datos en objeto de tipo EQUIPO
+            //Almacenar datos en objeto de tipo EQUIPO
         public List<EquiposViewModel> ObtenerEquipo()
         {
             List<EquiposViewModel> LstEquipo = new List<EquiposViewModel>();
@@ -77,9 +77,7 @@ namespace Controllers
                 }
                 reader.Close();
                 connection.Close();
-                //connection.Close();
             }
-
             return LstEquipo;
         }
 
@@ -110,6 +108,57 @@ namespace Controllers
                 connection.Close();
             }
             return LstUsuario;
+        }
+
+        public bool ExisteRut(string Rut)
+        {
+            string sql = @"SELECT COUNT(*) FROM Usuario WHERE RUT = @Rut";
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Rut", Rut);
+
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                return count == 0;
+            }
+        }
+
+        public void GuardarPrestamo(string Equipo, string User, DateTime inicio, DateTime fin)
+        {
+            string sql1 = @"SELECT ID_User FROM Usuario WHERE RUT = @User";
+            string sql2 = @"SELECT ID_Equipo FROM EquipoUnico WHERE Num_Serie = @Equipo";
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd1 = new SqlCommand(sql1, conn);
+                cmd1.Parameters.AddWithValue("@User", User);
+
+                SqlCommand cmd2 = new SqlCommand(sql2, conn);
+                cmd2.Parameters.AddWithValue("@Equipo", Equipo);
+
+                int IDUser = Convert.ToInt32(cmd1.ExecuteScalar());
+                int IDEquipo = Convert.ToInt32(cmd2.ExecuteScalar());
+
+                //  Se crea un objeto
+                using (Model_BDContainer db = new Model_BDContainer())
+                {
+                    Prestamo nObj = new Prestamo();
+                    nObj.UsuarioID_User = IDUser;
+                    nObj.EquipoUnicoID_Equipo = IDEquipo;
+                    nObj.Date_Entrega = inicio;
+                    nObj.Date_Vencimiento = fin;
+
+                    db.Prestamo.Add(nObj);
+                    db.SaveChanges();
+                }
+                conn.Close();
+            }
         }
     }
 }
