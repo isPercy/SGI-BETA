@@ -131,6 +131,7 @@ namespace Controllers
         {
             string sql1 = @"SELECT ID_User FROM Usuario WHERE RUT = @User";
             string sql2 = @"SELECT ID_Equipo FROM EquipoUnico WHERE Num_Serie = @Equipo";
+            string sql3 = @"SELECT TOP 1 * FROM Prestamo ORDER BY ID_Prestamo DESC";
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -148,6 +149,7 @@ namespace Controllers
                 //  Se crea un objeto
                 using (Model_BDContainer db = new Model_BDContainer())
                 {
+                        //Se crea el prestamo
                     Prestamo nObj = new Prestamo();
                     nObj.UsuarioID_User = IDUser;
                     nObj.EquipoUnicoID_Equipo = IDEquipo;
@@ -155,6 +157,25 @@ namespace Controllers
                     nObj.Date_Vencimiento = fin;
 
                     db.Prestamo.Add(nObj);
+
+
+                        //Se cambia el estado del equipo
+                    EquipoUnico ChangeState = db.EquipoUnico.Find(IDEquipo);
+                    ChangeState.Activo = false;
+
+                    db.Entry(ChangeState).State = System.Data.Entity.EntityState.Modified;
+
+
+                        //Se crea el estado "En proceso" para el prestamo
+                    SqlCommand cmd3 = new SqlCommand(sql3, conn);
+                    int UltPestamo = Convert.ToInt32(cmd3.ExecuteScalar());
+
+                    Registro_Estados NuevoRegEstado = new Registro_Estados();
+                    NuevoRegEstado.PrestamoID_Prestamo = UltPestamo;
+                    NuevoRegEstado.EstadosID_Estado = 1;
+                    NuevoRegEstado.Date_Registro = inicio;
+
+                    db.Registro_Estados.Add(NuevoRegEstado);
                     db.SaveChanges();
                 }
                 conn.Close();

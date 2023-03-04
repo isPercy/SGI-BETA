@@ -98,27 +98,7 @@ namespace SGI_View
             }
             else
             {
-
-                if (db.ExisteRut(ValueRut) == false)
-                {
-                    CompletarUsuario();
-                    TxtNom.Enabled = false;
-                    TxtCelular.Enabled = false;
-                    TxtCorreo.Enabled = false;
-                    TxtCarrera.Enabled = false;
-                }
-                else
-                {
-                    TxtNom.Text = "";
-                    TxtCelular.Text = "";
-                    TxtCorreo.Text = "";
-                    TxtCarrera.Text = "";
-
-                    TxtNom.Enabled = true;
-                    TxtCelular.Enabled = true;
-                    TxtCorreo.Enabled = true;
-                    TxtCarrera.Enabled = true;
-                }
+                GenerarPrestamo();
             }
         }
         private void TxtRut_KeyDown(object sender, KeyEventArgs e)
@@ -131,27 +111,7 @@ namespace SGI_View
                 }
                 else
                 {
-
-                    if (db.ExisteRut(ValueRut) == false)
-                    {
-                        CompletarUsuario();
-                        TxtNom.Enabled = false;
-                        TxtCelular.Enabled = false;
-                        TxtCorreo.Enabled = false;
-                        TxtCarrera.Enabled = false;
-                    }
-                    else
-                    {
-                        TxtNom.Text = "";
-                        TxtCelular.Text = "";
-                        TxtCorreo.Text = "";
-                        TxtCarrera.Text = "";
-
-                        TxtNom.Enabled = true;
-                        TxtCelular.Enabled = true;
-                        TxtCorreo.Enabled = true;
-                        TxtCarrera.Enabled = true;
-                    }
+                    GenerarPrestamo();
                 }
             }
         }
@@ -212,6 +172,57 @@ namespace SGI_View
             catch(Exception ex) 
             {  
                 MessageBox.Show("No se pudo completar la operacion por lo siguiente: " + ex);
+            }
+        }
+
+        public void GenerarPrestamo()
+        {
+            if (db.ExisteRut(ValueRut) == false)
+            {
+                CompletarUsuario();
+                TxtNom.Enabled = false;
+                TxtCelular.Enabled = false;
+                TxtCorreo.Enabled = false;
+                TxtCarrera.Enabled = false;
+            }
+            else
+            {
+                TxtNom.Text = "";
+                TxtCelular.Text = "";
+                TxtCorreo.Text = "";
+                TxtCarrera.Text = "";
+
+                TxtNom.Enabled = true;
+                TxtCelular.Enabled = true;
+                TxtCorreo.Enabled = true;
+                TxtCarrera.Enabled = true;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (TxtNom.Enabled == true)
+            {
+                if (string.IsNullOrEmpty(TxtRut.Text) || string.IsNullOrEmpty(TxtCorreo.Text) || string.IsNullOrEmpty(TxtCelular.Text) || string.IsNullOrEmpty(TxtNom.Text) || string.IsNullOrEmpty(TxtCarrera.Text))
+                {
+                    MessageBox.Show("No se permite campos en blanco");
+                }
+                else
+                {
+                    MessageBox.Show("OK");
+
+                    string DNI = TxtRut.Text;
+                    string Name = TxtNom.Text;
+                    string Correo = TxtCorreo.Text;
+                    string Carrera = TxtCarrera.Text;
+                    string Num = TxtCelular.Text;
+
+                    //db.GuardarUsuario(DNI, Name, Correo, Num, Carrera); aun no se crea la funcion
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se puede guardar un usuario ya existente");
             }
         }
     }

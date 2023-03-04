@@ -31,7 +31,7 @@ namespace Models.BD
         public virtual DbSet<Prestamo> Prestamo { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Carrera_Usuario> Carrera_Usuario { get; set; }
-        public virtual DbSet<Registro_Estados> Registro_EstadosSet { get; set; }
+        public virtual DbSet<Registro_Estados> Registro_Estados { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
     }
 }
